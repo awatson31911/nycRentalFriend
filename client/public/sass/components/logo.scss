@@ -1,0 +1,10 @@
+.logo-box {
+  position: absolute;
+  top: 5px;
+  right: 0;
+  z-index: 1;
+
+  .logo {
+    height: 3rem;
+  }
+}

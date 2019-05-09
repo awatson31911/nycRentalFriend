@@ -1,0 +1,46 @@
+.main-navigation {
+  display: inline-block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-size: 1.8rem;
+  z-index: 1;
+
+  .main-navigation__list {
+    display: inline-block;
+    border: .2rem;
+    padding: 2rem 0 2rem 0;
+    letter-spacing: .1rem;
+    background-color: $primary-color;
+    color: $color-black;
+    
+    
+    [class*="__list--"] {
+      padding: 2rem;
+      transition: background-color 200ms linear, color 250ms linear;
+
+      &:link
+      ,:visited {
+        text-transform: uppercase;
+        text-decoration: none;
+        color: $color-black;
+        
+      }
+      
+      &:hover {
+        background-color: $color-black;
+        color: $primary-color;
+      }
+
+    }
+  }
+  #js-main-navigation__pull-out {
+    display: inline-block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-size: 1.8rem;
+    z-index: 1;
+  }
+
+}

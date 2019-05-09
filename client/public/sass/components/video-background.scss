@@ -1,0 +1,11 @@
+.video-background {
+  background-image: 
+    url(../img/vintage-concrete.png)
+    ,url(../img/dorian-mongel-554993-unsplash.jpg);
+  background-size: auto, cover;
+  background-position: top;
+  background-repeat: repeat, no-repeat;
+  background-blend-mode: multiply;
+  height: 100%;
+  opacity: .7;
+}
