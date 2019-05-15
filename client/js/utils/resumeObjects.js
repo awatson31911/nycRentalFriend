@@ -4,42 +4,42 @@ const react = {
   id: 1,
   exposure: 'Used in Project(s)',
   logoURL: '../public/img/react_logo.jpg',
-  description: '"React is a JavaScript library for building user interfaces. It is maintained by Facebook and a community of individual developers and companies. React can be used as a base in the development of single-page or mobile applications."'
+  description: ''React is a JavaScript library for building user interfaces. It is maintained by Facebook and a community of individual developers and companies. React can be used as a base in the development of single-page or mobile applications.''
 } 
 const redux = {
   name: 'Redux',
   id: 2,
   exposure: 'Used in Project(s)',
   logoURL: '../public/img/redux_logo.jpg',
-  description: '"Redux is an open-source JavaScript library for managing application state. It is most commonly used with libraries such as React or Angular for building user interfaces. Similar to (and inspired by) Facebook\'s Flux architecture"'
+  description: ''Redux is an open-source JavaScript library for managing application state. It is most commonly used with libraries such as React or Angular for building user interfaces. Similar to (and inspired by) Facebook\'s Flux architecture''
 }
 const express = {
   name: 'Express.js',
   id: 3,
   exposure: 'Used in Project(s)',
   logoURL: '../public/img/express_logo.jpg',
-  description: '"Express.js, or simply Express, is a web application framework for Node.js, released as free and open-source software under the MIT License. It is designed for building web applications and APIs."'
+  description: ''Express.js, or simply Express, is a web application framework for Node.js, released as free and open-source software under the MIT License. It is designed for building web applications and APIs.''
 } 
 const d3 = {
   name: 'D3.js',
   id: 4,
   exposure: 'Used in Project(s)',
   logoURL: '../public/img/d3_logo.jpg',
-  description: '"D3.js is a JavaScript library for producing dynamic, interactive data visualizations in web browsers. It makes use of the widely implemented SVG, HTML5, and CSS standards. It is the successor to the earlier Protovis framework."'
+  description: ''D3.js is a JavaScript library for producing dynamic, interactive data visualizations in web browsers. It makes use of the widely implemented SVG, HTML5, and CSS standards. It is the successor to the earlier Protovis framework.''
 }
 const node = {
   name: 'Node.js',
   id: 5,
   exposure: 'Used in Project(s)',
   logoURL: '../public/img/node_logo.jpg',
-  description: '"Node.js is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code outside of a browser."'
+  description: ''Node.js is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code outside of a browser.''
 }
 const reactNative = {
   name: 'React Native',
   id: 6,
   exposure: 'Used in Project(s)',
   logoURL: '../public/img/react-native_logo.jpg',
-  description: '"React Native is an entire platform allowing you to build native, cross-platform mobile apps. It uses the same design as React, letting you compose a rich mobile UI using declarative components."'
+  description: ''React Native is an entire platform allowing you to build native, cross-platform mobile apps. It uses the same design as React, letting you compose a rich mobile UI using declarative components.''
 }
 
 const expo = {
@@ -47,7 +47,7 @@ const expo = {
   id: 7,
   exposure: 'Used in Project(s)',
   logoURL: '../public/img/expo_logo.jpg',
-  description: '"Expo is a free and open source toolchain built around React Native to help you build native iOS and Android projects using JavaScript and React."'
+  description: ''Expo is a free and open source toolchain built around React Native to help you build native iOS and Android projects using JavaScript and React.''
 }
 
 const webpack = {
@@ -55,7 +55,7 @@ const webpack = {
   id: 8,
   exposure: 'Used in Project(s)',
   logoURL: '../public/img/webpack_logo.jpg',
-  description: '"Webpack is an open-source JavaScript module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packaging just about any resource or asset. Webpack takes modules with dependencies and generates static assets representing those modules."'
+  description: ''Webpack is an open-source JavaScript module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packaging just about any resource or asset. Webpack takes modules with dependencies and generates static assets representing those modules.''
 }
 
 export const skills = {1: react, 2: redux, 3: express, 4: d3, 5: node, 6: reactNative, 7: expo}

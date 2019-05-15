@@ -1,34 +1,24 @@
 import React, { Component } from 'react';
-// import { GoogleMap, withScriptjs, withGoogleMap } from 'react-google-maps';
-import Form_priceAmenities from './Form_priceAmenities';
-// import Form_neighborhoods from './Form_neighborhoods';
+import Form from './Form';
 
-// function Map() {
-//   return (
-//     <GoogleMap
-//       defaultZoom={10}
-//       defaultCenter={{ lat:40.724030, lng:-73.987610 }}
-//     />
-
-//   );
-// }
-
-// const WrappedMap = withScriptjs(withGoogleMap(Map));
 
 export default class App extends Component {
   constructor() {
     super();
     this.state = {
+      priceMin: 0,
+      priceMax: 5000,
       isApartment: false,
       isCondo: false,
       isCoOp: false,
-      hasWasherDryeInUnit: false,
+      hasWasherDryerInUnit: false,
       hasWasherDryerInBuilding: false,
       hasDishwasher: false,
       hasOutdoorArea: false,
       hasPets: false,
       hasFitnessGym: false
     };
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
@@ -38,12 +28,22 @@ export default class App extends Component {
 
     this.setState({
       [name]: value
-    }).bind(this);
+    });
   }
 
   render() {
     return (
-      <Form_priceAmenities handleChange={this.handleChange}/>
+      <div className='main-container'>
+        <section>
+          <Form handleChange={this.handleChange} />
+        </section>
+        <section className='search-results-container'>
+        This section will hold the search results
+        </section>
+        <section className='site-info-container'>
+          This section will hold the individual site info
+        </section>
+      </div>
     );
   }
 

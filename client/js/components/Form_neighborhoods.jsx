@@ -5,7 +5,9 @@ export default class Form_neighborhoods extends Component {
 
   render() {
     return (
-      'Neighborhoods go Here'
+      <div className='form-input-neighborhoods'>
+        This is where the neighborhoods will go :D 
+      </div>
     );
   }
 

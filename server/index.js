@@ -1,11 +1,9 @@
-
-
 const express = require('express');
 const app = express(); // Creates an instance of express application
 const path = require('path');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 /* ------------------------------ Middleware ------------------------------------------- */
 
@@ -49,6 +47,6 @@ app.listen(port, () => {
   setTimeout(() => {
     // eslint-disable-next-line no-console
     console.log(`...We're
-    listening (port:3000).... `);
+    listening (port:3001).... `);
   }, 3000);
 });

@@ -1,0 +1,19 @@
+.form-input-container {
+  margin: 1rem;
+
+  .form-input-container__row {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+.form-input-amenities {
+  display: flex;
+  flex-direction: column;
+  
+  .form-input-amenities__item {
+    border: 1px #ccc solid;
+    cursor: pointer;
+  }
+
+}
