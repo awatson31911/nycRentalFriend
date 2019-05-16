@@ -16,7 +16,7 @@ import React from 'react';
 
 export default function Map() {
   return (
-    <div className='googel-map-container'>
+    <div className='form-google-map-container'>
       This is where the map will go :D
     </div>
   );

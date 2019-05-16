@@ -5,15 +5,15 @@ import PropTypes from 'prop-types';
 export default function Form_prices(props) {
 
   return (
-    <div className='form-input-prices'>
-      <label>
+    <div className='form-prices'>
+      <label className='form-prices__list'>
         Price Range:
         <input type='price'
-          className='form-input-prices__item'
+          className='form-prices__list-item'
           name='priceMin'
           onChange={props.handleChange} />
         <input type='price'
-          className='form-input-prices__item'
+          className='form-prices__list-item'
           name='priceMax'
           onChange={props.handleChange} />
       </label>

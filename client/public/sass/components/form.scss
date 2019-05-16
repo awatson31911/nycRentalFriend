@@ -1,19 +1,49 @@
-.form-input-container {
-  margin: 1rem;
+/* BLOCKS ------------------------------------------ */
 
-  .form-input-container__row {
-    display: flex;
-    flex-direction: row;
-  }
+.form-container {
+  height: 100%;
+  margin: 1rem;
+  display: flex;
+	flex-direction: column;
+	justify-content: space-around;
 }
 
-.form-input-amenities {
+.form-container__row {
+  display: flex;
+	flex-direction: row;
+}
+
+.form-neighborhoods {
+  flex: 2;
+}
+
+.form-prices {
+  flex: 1;
+}
+
+.form-amenities {
+  flex: 1;
+}
+
+.form-google-map-container {
+  flex: 2;
+}
+
+/* ELEMENTS ------------------------------------------ */
+
+.form-prices__list {
   display: flex;
   flex-direction: column;
-  
-  .form-input-amenities__item {
-    border: 1px #ccc solid;
-    cursor: pointer;
-  }
-
 }
+
+.form-amenities__list {
+	display: flex;
+	flex-direction: column;
+}
+
+.form-amenities__list-item {
+  border: 1px rgb(2, 2, 2) solid;
+  cursor: pointer;
+}
+
+/* MODIFIERS ------------------------------------------ */
