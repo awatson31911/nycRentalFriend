@@ -18,7 +18,29 @@ export default class Form extends Component {
       hasDishwasher: false,
       hasOutdoorArea: false,
       hasPets: false,
-      hasFitnessGym: false
+      hasFitnessGym: false,
+      selectedNeighborhoods: {
+        brooklyn:{
+          all:false,
+          neighborhoods: []
+        },
+        bronx:{
+          all:false,
+          neighborhoods: []
+        },
+        manhattan:{
+          all:false,
+          neighborhoods: []
+        },
+        queens:{
+          all:false,
+          neighborhoods: []
+        },
+        statenIsland:{
+          all:false,
+          neighborhoods: []
+        }
+      }
     };
     this.handleChange = this.handleChange.bind(this);
 
