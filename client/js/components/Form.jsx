@@ -9,36 +9,39 @@ export default class Form extends Component {
     super();
     this.state = {
       priceMin: 0,
-      priceMax: 5000,
+      priceMax: 50000,
       isApartment: false,
       isCondo: false,
       isCoOp: false,
+      hasElevator: false,
       hasWasherDryerInUnit: false,
       hasWasherDryerInBuilding: false,
       hasDishwasher: false,
-      hasOutdoorArea: false,
-      hasPets: false,
+      hasSharedOutdoorArea: false,
+      hasPrivateOutdoorArea: false,
+      hasDogs: false,
+      hasCats: false,
       hasFitnessGym: false,
       selectedNeighborhoods: {
         brooklyn:{
           all:false,
-          neighborhoods: []
+          neighborhoods: {}
         },
         bronx:{
           all:false,
-          neighborhoods: []
+          neighborhoods: {}
         },
         manhattan:{
           all:false,
-          neighborhoods: []
+          neighborhoods: {}
         },
         queens:{
           all:false,
-          neighborhoods: []
+          neighborhoods: {}
         },
         statenIsland:{
           all:false,
-          neighborhoods: []
+          neighborhoods: {}
         }
       }
     };

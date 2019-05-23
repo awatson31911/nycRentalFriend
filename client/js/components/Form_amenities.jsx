@@ -32,6 +32,13 @@ export default function Form_priceAmenities(props) {
         <label>
           <input type='checkbox'
             className='form-amenities__list-item'
+            name='hasElevator'
+            onChange={props.handleChange} />
+          Elevator
+        </label>
+        <label>
+          <input type='checkbox'
+            className='form-amenities__list-item'
             name='hasWasherDryerInUnit'
             onChange={props.handleChange} />
           Washer/Dryer in Unit
@@ -53,16 +60,30 @@ export default function Form_priceAmenities(props) {
         <label>
           <input type='checkbox'
             className='form-amenities__list-item'
-            name='hasOutdoorArea'
+            name='hasPrivateOutdoorArea'
             onChange={props.handleChange} />
-          Outdoor Area
+          Private Outdoor Area
         </label>
         <label>
           <input type='checkbox'
             className='form-amenities__list-item'
-            name='hasPets'
+            name='hasSharedOutdoorArea'
             onChange={props.handleChange} />
-          Pets
+          Shared Outdoor Area
+        </label>
+        <label>
+          <input type='checkbox'
+            className='form-amenities__list-item'
+            name='hasDogs'
+            onChange={props.handleChange} />
+          Dogs Allowed
+        </label>
+        <label>
+          <input type='checkbox'
+            className='form-amenities__list-item'
+            name='hasCats'
+            onChange={props.handleChange} />
+          Cats Allowed
         </label>
         <label>
           <input type='checkbox'
