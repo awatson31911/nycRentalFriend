@@ -1,3 +1,356 @@
+const rentHopCodes;
+module.exports = rentHopCodes = {
+  brooklyn: {
+    'Bedford-Stuyvesant': '38'
+    , 'Bushwick': '40'
+    , 'Greenpoint': '77'
+    , 'Williamsburg': '41'
+    , 'Boerum Hill': '72'
+    , 'Carroll Gardens': '86'
+    , 'Cobble Hill': '99'
+    , 'Gowanus': '85'
+    , 'Greenwood Heights': '73'
+    , 'Park Slope': '50'
+    , 'Prospect Park': '120'
+    , 'Red Hook': '111'
+    , 'Sunset Park': '84'
+    , 'Windsor Terrace': '98'
+    , 'Crown Heights': '52'
+    , 'East Flatbush': '79'
+    , 'Flatbush': '55'
+    , 'Kensington': '89'
+    , 'Midwood': '100'
+    , 'Ocean Hill': '82'
+    , 'Brooklyn Heights': '60'
+    , 'Brooklyn Navy Yard': '130'
+    , 'Clinton Hill': '61'
+    , 'DUMBO': '105'
+    , 'Downtown Brooklyn': '63'
+    , 'Fort Greene': '74'
+    , 'Prospect Heights': '78'
+    , 'Vinegar Hill': '117'
+    , 'Bath Beach': '129'
+    , 'Bay Ridge': '62'
+    , 'Bensonhurst': '109'
+    , 'Borough Park': '104'
+    , 'Dyker Heights': '115'
+    , 'Mapleton': '122'
+    , 'Brighton Beach': '134'
+    , 'Coney Island': '154'
+    , 'Gravesend': '108'
+    , 'Sheepshead Bay': '94'
+    , 'Brownsville': '124'
+    , 'Canarsie': '121'
+    , 'Cypress Hills': '135'
+    , 'East New York': '101'
+    , 'Bergen Beach': '179'
+    , 'Flatlands': '116'
+    , 'Floyd Bennett Airfield': '194'
+    , 'Marine Park': '182'
+    , 'Mill Basin': '177'
+  },
+  bronx: {
+    'Bedford Park': '131'
+    , 'Belmont': '139'
+    , 'Bronx Park': '164'
+    , 'Concourse': '136'
+    , 'Concourse Village': '150'
+    , 'East Tremont': '178'
+    , 'Fordham Heights': '137'
+    , 'Fordham Manor': '114'
+    , 'Highbridge': '161'
+    , 'Hunts Point': '187'
+    , 'Kingsbridge': '118'
+    , 'Longwood': '189'
+    , 'Marble Hill': '188'
+    , 'Morris Heights': '168'
+    , 'Morrisania': '158'
+    , 'Mott Haven': '151'
+    , 'Mount Eden': '152'
+    , 'Mount Hope': '159'
+    , 'Norwood': '113'
+    , 'Riverdale': '91'
+    , 'University Heights': '146'
+    , 'Van Cortlandt Park': '191'
+    , 'West Farms': '176'
+    , 'Allerton': '110'
+    , 'Clason Point': '143'
+    , 'Morris Park': '145'
+    , 'Parkchester': '141'
+    , 'Pelham Bay': '153'
+    , 'Pelham Parkway': '96'
+    , 'Throgs Neck': '175'
+    , 'Unionport': '170'
+    , 'Van Nest': '157'
+    , 'Wakefield': '147'
+    , 'Westchester Village': '192'
+    , 'Williamsbridge': '144'
+    , 'Woodlawn Heights': '190'
+  }
+  , manhattan: {
+    'Battery Park City': '51'
+    , 'Bowery': '69'
+    , 'Chinatown': '102'
+    , 'Civic Center': '92'
+    , 'East Village': '35'
+    , 'Financial District': '31'
+    , 'Greenwich Village': '42'
+    , 'Little Italy': '88'
+    , 'Lower East Side': '59'
+    , 'NoHo': '80'
+    , 'NoLita': '71'
+    , 'SoHo': '58'
+    , 'Tribeca': '44'
+    , 'Two Bridges': '127'
+    , 'West Village': '39'
+    , 'Chelsea': '33'
+    , 'Flatiron District': '57'
+    , 'Garment District': '54'
+    , 'Gramercy Park': '47'
+    , 'Hell\'s Kitchen': '32'
+    , 'Kips Bay': '37'
+    , 'Koreatown': '87'
+    , 'Midtown East': '34'
+    , 'Murray Hill': '36'
+    , 'NoMad': '75'
+    , 'Stuyvesant Town - Peter Cooper Village': '65'
+    , 'Theater District': '43'
+    , 'Central Harlem': '48'
+    , 'Central Park': '68'
+    , 'East Harlem': '49'
+    , 'Inwood': '70'
+    , 'Upper East Side': '29'
+    , 'Upper West Side': '30'
+    , 'Washington Heights': '46'
+    , 'West Harlem': '53'
+    , 'Randalls-Wards Island': '193'
+    , 'Roosevelt Island': '97'
+  },
+  queens: {
+    'Astoria': '56'
+    , 'Corona': '126'
+    , 'East Elmhurst': '172'
+    , 'Elmhurst': '90'
+    , 'Forest Hills': '66'
+    , 'Glendale': '106'
+    , 'Jackson Heights': '83'
+    , 'Long Island City': '45'
+    , 'Maspeth': '119'
+    , 'Middle Village': '128'
+    , 'Rego Park': '64'
+    , 'Ridgewood': '67'
+    , 'Sunnyside': '1000'
+    , 'Woodside': '95'
+    , 'Auburndale': '162'
+    , 'Bayside': '166'
+    , 'College Point': '167'
+    , 'Flushing': '81'
+    , 'Flushing Meadows-Corona Park': '183'
+    , 'Fresh Meadows': '171'
+    , 'Glen Oaks': '174'
+    , 'Kew Gardens': '76'
+    , 'Kew Gardens Hills': '148'
+    , 'Whitestone': '125'
+    , 'Briarwood': '103'
+    , 'Hollis': '165'
+    , 'Holliswood': '185'
+    , 'Jamaica': '93'
+    , 'Jamaica Estates': '132'
+    , 'Jamaica Hills': '160'
+    , 'South Jamaica': '169'
+    , 'St. Albans': '186'
+    , 'Forest Park': '184'
+    , 'Howard Beach': '181'
+    , 'Ozone Park': '140'
+    , 'Richmond Hill': '107'
+    , 'South Ozone Park': '138'
+    , 'Woodhaven': '123'
+    , 'Far Rockaway': '156'
+    , 'Rockaway Beach': '142'
+  },
+  'staten island': {
+    'East Shore': '27'
+    , 'Mid-Island': '23'
+    , 'North Shore': '24'
+    , 'South Shore': '26'
+  }
+};
+// export const rentHopCodes = {
+//   brooklyn: [
+//     { name: 'Bedford-Stuyvesant', code: '38' }
+//     , { name: 'Bushwick', code: '40' }
+//     , { name: 'Greenpoint', code: '77' }
+//     , { name: 'Williamsburg', code: '41' }
+//     , { name: 'Boerum Hill', code: '72' }
+//     , { name: 'Carroll Gardens', code: '86' }
+//     , { name: 'Cobble Hill', code: '99' }
+//     , { name: 'Gowanus', code: '85' }
+//     , { name: 'Greenwood Heights', code: '73' }
+//     , { name: 'Park Slope', code: '50' }
+//     , { name: 'Prospect Park', code: '120' }
+//     , { name: 'Red Hook', code: '111' }
+//     , { name: 'Sunset Park', code: '84' }
+//     , { name: 'Windsor Terrace', code: '98' }
+//     , { name: 'Crown Heights', code: '52' }
+//     , { name: 'East Flatbush', code: '79' }
+//     , { name: 'Flatbush', code: '55' }
+//     , { name: 'Kensington', code: '89' }
+//     , { name: 'Midwood', code: '100' }
+//     , { name: 'Ocean Hill', code: '82' }
+//     , { name: 'Brooklyn Heights', code: '60' }
+//     , { name: 'Brooklyn Navy Yard', code: '130' }
+//     , { name: 'Clinton Hill', code: '61' }
+//     , { name: 'DUMBO', code: '105' }
+//     , { name: 'Downtown Brooklyn', code: '63' }
+//     , { name: 'Fort Greene', code: '74' }
+//     , { name: 'Prospect Heights', code: '78' }
+//     , { name: 'Vinegar Hill', code: '117' }
+//     , { name: 'Bath Beach', code: '129' }
+//     , { name: 'Bay Ridge', code: '62' }
+//     , { name: 'Bensonhurst', code: '109' }
+//     , { name: 'Borough Park', code: '104' }
+//     , { name: 'Dyker Heights', code: '115' }
+//     , { name: 'Mapleton', code: '122' }
+//     , { name: 'Brighton Beach', code: '134' }
+//     , { name: 'Coney Island', code: '154' }
+//     , { name: 'Gravesend', code: '108' }
+//     , { name: 'Sheepshead Bay', code: '94' }
+//     , { name: 'Brownsville', code: '124' }
+//     , { name: 'Canarsie', code: '121' }
+//     , { name: 'Cypress Hills', code: '135' }
+//     , { name: 'East New York', code: '101' }
+//     , { name: 'Bergen Beach', code: '179' }
+//     , { name: 'Flatlands', code: '116' }
+//     , { name: 'Floyd Bennett Airfield', code: '194' }
+//     , { name: 'Marine Park', code: '182' }
+//     , { name: 'Mill Basin', code: '177' }
+//   ],
+//   bronx: [
+//     { name: 'Bedford Park', code: '131' }
+//     , { name: 'Belmont', code: '139' }
+//     , { name: 'Bronx Park', code: '164' }
+//     , { name: 'Concourse', code: '136' }
+//     , { name: 'Concourse Village', code: '150' }
+//     , { name: 'East Tremont', code: '178' }
+//     , { name: 'Fordham Heights', code: '137' }
+//     , { name: 'Fordham Manor', code: '114' }
+//     , { name: 'Highbridge', code: '161' }
+//     , { name: 'Hunts Point', code: '187' }
+//     , { name: 'Kingsbridge', code: '118' }
+//     , { name: 'Longwood', code: '189' }
+//     , { name: 'Marble Hill', code: '188' }
+//     , { name: 'Morris Heights', code: '168' }
+//     , { name: 'Morrisania', code: '158' }
+//     , { name: 'Mott Haven', code: '151' }
+//     , { name: 'Mount Eden', code: '152' }
+//     , { name: 'Mount Hope', code: '159' }
+//     , { name: 'Norwood', code: '113' }
+//     , { name: 'Riverdale', code: '91' }
+//     , { name: 'University Heights', code: '146' }
+//     , { name: 'Van Cortlandt Park', code: '191' }
+//     , { name: 'West Farms', code: '176' }
+//     , { name: 'Allerton', code: '110' }
+//     , { name: 'Clason Point', code: '143' }
+//     , { name: 'Morris Park', code: '145' }
+//     , { name: 'Parkchester', code: '141' }
+//     , { name: 'Pelham Bay', code: '153' }
+//     , { name: 'Pelham Parkway', code: '96' }
+//     , { name: 'Throgs Neck', code: '175' }
+//     , { name: 'Unionport', code: '170' }
+//     , { name: 'Van Nest', code: '157' }
+//     , { name: 'Wakefield', code: '147' }
+//     , { name: 'Westchester Village', code: '192' }
+//     , { name: 'Williamsbridge', code: '144' }
+//     , { name: 'Woodlawn Heights', code: '190' }]
+//   , manhattan: [
+//     { name: 'Battery Park City', code: '51' }
+//     , { name: 'Bowery', code: '69' }
+//     , { name: 'Chinatown', code: '102' }
+//     , { name: 'Civic Center', code: '92' }
+//     , { name: 'East Village', code: '35' }
+//     , { name: 'Financial District', code: '31' }
+//     , { name: 'Greenwich Village', code: '42' }
+//     , { name: 'Little Italy', code: '88' }
+//     , { name: 'Lower East Side', code: '59' }
+//     , { name: 'NoHo', code: '80' }
+//     , { name: 'NoLita', code: '71' }
+//     , { name: 'SoHo', code: '58' }
+//     , { name: 'Tribeca', code: '44' }
+//     , { name: 'Two Bridges', code: '127' }
+//     , { name: 'West Village', code: '39' }
+//     , { name: 'Chelsea', code: '33' }
+//     , { name: 'Flatiron District', code: '57' }
+//     , { name: 'Garment District', code: '54' }
+//     , { name: 'Gramercy Park', code: '47' }
+//     , { name: 'Hell\'s Kitchen', code: '32' }
+//     , { name: 'Kips Bay', code: '37' }
+//     , { name: 'Koreatown', code: '87' }
+//     , { name: 'Midtown East', code: '34' }
+//     , { name: 'Murray Hill', code: '36' }
+//     , { name: 'NoMad', code: '75' }
+//     , { name: 'Stuyvesant Town - Peter Cooper Village', code: '65' }
+//     , { name: 'Theater District', code: '43' }
+//     , { name: 'Central Harlem', code: '48' }
+//     , { name: 'Central Park', code: '68' }
+//     , { name: 'East Harlem', code: '49' }
+//     , { name: 'Inwood', code: '70' }
+//     , { name: 'Upper East Side', code: '29' }
+//     , { name: 'Upper West Side', code: '30' }
+//     , { name: 'Washington Heights', code: '46' }
+//     , { name: 'West Harlem', code: '53' }
+//     , { name: 'Randalls-Wards Island', code: '193' }
+//     , { name: 'Roosevelt Island', code: '97' }
+//   ],
+//   queens: [
+//     { name: 'Astoria', code: '56' }
+//     , { name: 'Corona', code: '126' }
+//     , { name: 'East Elmhurst', code: '172' }
+//     , { name: 'Elmhurst', code: '90' }
+//     , { name: 'Forest Hills', code: '66' }
+//     , { name: 'Glendale', code: '106' }
+//     , { name: 'Jackson Heights', code: '83' }
+//     , { name: 'Long Island City', code: '45' }
+//     , { name: 'Maspeth', code: '119' }
+//     , { name: 'Middle Village', code: '128' }
+//     , { name: 'Rego Park', code: '64' }
+//     , { name: 'Ridgewood', code: '67' }
+//     , { name: 'Sunnyside', code: '1000' }
+//     , { name: 'Woodside', code: '95' }
+//     , { name: 'Auburndale', code: '162' }
+//     , { name: 'Bayside', code: '166' }
+//     , { name: 'College Point', code: '167' }
+//     , { name: 'Flushing', code: '81' }
+//     , { name: 'Flushing Meadows-Corona Park', code: '183' }
+//     , { name: 'Fresh Meadows', code: '171' }
+//     , { name: 'Glen Oaks', code: '174' }
+//     , { name: 'Kew Gardens', code: '76' }
+//     , { name: 'Kew Gardens Hills', code: '148' }
+//     , { name: 'Whitestone', code: '125' }
+//     , { name: 'Briarwood', code: '103' }
+//     , { name: 'Hollis', code: '165' }
+//     , { name: 'Holliswood', code: '185' }
+//     , { name: 'Jamaica', code: '93' }
+//     , { name: 'Jamaica Estates', code: '132' }
+//     , { name: 'Jamaica Hills', code: '160' }
+//     , { name: 'South Jamaica', code: '169' }
+//     , { name: 'St. Albans', code: '186' }
+//     , { name: 'Forest Park', code: '184' }
+//     , { name: 'Howard Beach', code: '181' }
+//     , { name: 'Ozone Park', code: '140' }
+//     , { name: 'Richmond Hill', code: '107' }
+//     , { name: 'South Ozone Park', code: '138' }
+//     , { name: 'Woodhaven', code: '123' }
+//     , { name: 'Far Rockaway', code: '156' }
+//     , { name: 'Rockaway Beach', code: '142' }
+//   ],
+//   'staten island': [
+//     { name: 'East Shore', code: '27' }
+//     , { name: 'Mid-Island', code: '23' }
+//     , { name: 'North Shore', code: '24' }
+//     , { name: 'South Shore', code: '26' }
+//   ]
+// };
+
 // export const rentHopCodes = {
 //   'Allerton': '110',
 //   'Astoria': '56',
@@ -171,179 +524,3 @@
 //   'Woodlawn Heights': '190',
 //   'Woodside': '95',
 // };
-
-export const rentHopCodes = {
-  brooklyn: [
-    { name: 'Bedford-Stuyvesant', code: '38' }
-    , { name: 'Bushwick', code: '40' }
-    , { name: 'Greenpoint', code: '77' }
-    , { name: 'Williamsburg', code: '41' }
-    , { name: 'Boerum Hill', code: '72' }
-    , { name: 'Carroll Gardens', code: '86' }
-    , { name: 'Cobble Hill', code: '99' }
-    , { name: 'Gowanus', code: '85' }
-    , { name: 'Greenwood Heights', code: '73' }
-    , { name: 'Park Slope', code: '50' }
-    , { name: 'Prospect Park', code: '120' }
-    , { name: 'Red Hook', code: '111' }
-    , { name: 'Sunset Park', code: '84' }
-    , { name: 'Windsor Terrace', code: '98' }
-    , { name: 'Crown Heights', code: '52' }
-    , { name: 'East Flatbush', code: '79' }
-    , { name: 'Flatbush', code: '55' }
-    , { name: 'Kensington', code: '89' }
-    , { name: 'Midwood', code: '100' }
-    , { name: 'Ocean Hill', code: '82' }
-    , { name: 'Brooklyn Heights', code: '60' }
-    , { name: 'Brooklyn Navy Yard', code: '130' }
-    , { name: 'Clinton Hill', code: '61' }
-    , { name: 'DUMBO', code: '105' }
-    , { name: 'Downtown Brooklyn', code: '63' }
-    , { name: 'Fort Greene', code: '74' }
-    , { name: 'Prospect Heights', code: '78' }
-    , { name: 'Vinegar Hill', code: '117' }
-    , { name: 'Bath Beach', code: '129' }
-    , { name: 'Bay Ridge', code: '62' }
-    , { name: 'Bensonhurst', code: '109' }
-    , { name: 'Borough Park', code: '104' }
-    , { name: 'Dyker Heights', code: '115' }
-    , { name: 'Mapleton', code: '122' }
-    , { name: 'Brighton Beach', code: '134' }
-    , { name: 'Coney Island', code: '154' }
-    , { name: 'Gravesend', code: '108' }
-    , { name: 'Sheepshead Bay', code: '94' }
-    , { name: 'Brownsville', code: '124' }
-    , { name: 'Canarsie', code: '121' }
-    , { name: 'Cypress Hills', code: '135' }
-    , { name: 'East New York', code: '101' }
-    , { name: 'Bergen Beach', code: '179' }
-    , { name: 'Flatlands', code: '116' }
-    , { name: 'Floyd Bennett Airfield', code: '194' }
-    , { name: 'Marine Park', code: '182' }
-    , { name: 'Mill Basin', code: '177' }
-  ],
-  bronx: [
-    { name: 'Bedford Park', code: '131' }
-    , { name: 'Belmont', code: '139' }
-    , { name: 'Bronx Park', code: '164' }
-    , { name: 'Concourse', code: '136' }
-    , { name: 'Concourse Village', code: '150' }
-    , { name: 'East Tremont', code: '178' }
-    , { name: 'Fordham Heights', code: '137' }
-    , { name: 'Fordham Manor', code: '114' }
-    , { name: 'Highbridge', code: '161' }
-    , { name: 'Hunts Point', code: '187' }
-    , { name: 'Kingsbridge', code: '118' }
-    , { name: 'Longwood', code: '189' }
-    , { name: 'Marble Hill', code: '188' }
-    , { name: 'Morris Heights', code: '168' }
-    , { name: 'Morrisania', code: '158' }
-    , { name: 'Mott Haven', code: '151' }
-    , { name: 'Mount Eden', code: '152' }
-    , { name: 'Mount Hope', code: '159' }
-    , { name: 'Norwood', code: '113' }
-    , { name: 'Riverdale', code: '91' }
-    , { name: 'University Heights', code: '146' }
-    , { name: 'Van Cortlandt Park', code: '191' }
-    , { name: 'West Farms', code: '176' }
-    , { name: 'Allerton', code: '110' }
-    , { name: 'Clason Point', code: '143' }
-    , { name: 'Morris Park', code: '145' }
-    , { name: 'Parkchester', code: '141' }
-    , { name: 'Pelham Bay', code: '153' }
-    , { name: 'Pelham Parkway', code: '96' }
-    , { name: 'Throgs Neck', code: '175' }
-    , { name: 'Unionport', code: '170' }
-    , { name: 'Van Nest', code: '157' }
-    , { name: 'Wakefield', code: '147' }
-    , { name: 'Westchester Village', code: '192' }
-    , { name: 'Williamsbridge', code: '144' }
-    , { name: 'Woodlawn Heights', code: '190' }]
-  , manhattan: [
-    { name: 'Battery Park City', code: '51' }
-    , { name: 'Bowery', code: '69' }
-    , { name: 'Chinatown', code: '102' }
-    , { name: 'Civic Center', code: '92' }
-    , { name: 'East Village', code: '35' }
-    , { name: 'Financial District', code: '31' }
-    , { name: 'Greenwich Village', code: '42' }
-    , { name: 'Little Italy', code: '88' }
-    , { name: 'Lower East Side', code: '59' }
-    , { name: 'NoHo', code: '80' }
-    , { name: 'NoLita', code: '71' }
-    , { name: 'SoHo', code: '58' }
-    , { name: 'Tribeca', code: '44' }
-    , { name: 'Two Bridges', code: '127' }
-    , { name: 'West Village', code: '39' }
-    , { name: 'Chelsea', code: '33' }
-    , { name: 'Flatiron District', code: '57' }
-    , { name: 'Garment District', code: '54' }
-    , { name: 'Gramercy Park', code: '47' }
-    , { name: 'Hell\'s Kitchen', code: '32' }
-    , { name: 'Kips Bay', code: '37' }
-    , { name: 'Koreatown', code: '87' }
-    , { name: 'Midtown East', code: '34' }
-    , { name: 'Murray Hill', code: '36' }
-    , { name: 'NoMad', code: '75' }
-    , { name: 'Stuyvesant Town - Peter Cooper Village', code: '65' }
-    , { name: 'Theater District', code: '43' }
-    , { name: 'Central Harlem', code: '48' }
-    , { name: 'Central Park', code: '68' }
-    , { name: 'East Harlem', code: '49' }
-    , { name: 'Inwood', code: '70' }
-    , { name: 'Upper East Side', code: '29' }
-    , { name: 'Upper West Side', code: '30' }
-    , { name: 'Washington Heights', code: '46' }
-    , { name: 'West Harlem', code: '53' }
-    , { name: 'Randalls-Wards Island', code: '193' }
-    , { name: 'Roosevelt Island', code: '97' }
-  ],
-  queens: [
-    { name: 'Astoria', code: '56' }
-    , { name: 'Corona', code: '126' }
-    , { name: 'East Elmhurst', code: '172' }
-    , { name: 'Elmhurst', code: '90' }
-    , { name: 'Forest Hills', code: '66' }
-    , { name: 'Glendale', code: '106' }
-    , { name: 'Jackson Heights', code: '83' }
-    , { name: 'Long Island City', code: '45' }
-    , { name: 'Maspeth', code: '119' }
-    , { name: 'Middle Village', code: '128' }
-    , { name: 'Rego Park', code: '64' }
-    , { name: 'Ridgewood', code: '67' }
-    , { name: 'Sunnyside', code: '1000' }
-    , { name: 'Woodside', code: '95' }
-    , { name: 'Auburndale', code: '162' }
-    , { name: 'Bayside', code: '166' }
-    , { name: 'College Point', code: '167' }
-    , { name: 'Flushing', code: '81' }
-    , { name: 'Flushing Meadows-Corona Park', code: '183' }
-    , { name: 'Fresh Meadows', code: '171' }
-    , { name: 'Glen Oaks', code: '174' }
-    , { name: 'Kew Gardens', code: '76' }
-    , { name: 'Kew Gardens Hills', code: '148' }
-    , { name: 'Whitestone', code: '125' }
-    , { name: 'Briarwood', code: '103' }
-    , { name: 'Hollis', code: '165' }
-    , { name: 'Holliswood', code: '185' }
-    , { name: 'Jamaica', code: '93' }
-    , { name: 'Jamaica Estates', code: '132' }
-    , { name: 'Jamaica Hills', code: '160' }
-    , { name: 'South Jamaica', code: '169' }
-    , { name: 'St. Albans', code: '186' }
-    , { name: 'Forest Park', code: '184' }
-    , { name: 'Howard Beach', code: '181' }
-    , { name: 'Ozone Park', code: '140' }
-    , { name: 'Richmond Hill', code: '107' }
-    , { name: 'South Ozone Park', code: '138' }
-    , { name: 'Woodhaven', code: '123' }
-    , { name: 'Far Rockaway', code: '156' }
-    , { name: 'Rockaway Beach', code: '142' }
-  ],
-  'staten island': [
-    { name: 'East Shore', code: '27' }
-    , { name: 'Mid-Island', code: '23' }
-    , { name: 'North Shore', code: '24' }
-    , { name: 'South Shore', code: '26' }
-  ]
-};
