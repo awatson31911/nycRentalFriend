@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import ReactModal from 'react';
+import ReactModal from 'react-modal';
 import PropTypes from 'prop-types';
-import { rentHopCodes as allNeighborhoods } from '../utils/neighborhoodCodes';
+import { rentHopCodes as allBoroughs } from '../utils/neighborhoodCodes';
 
 
 export default class Form_neighborhoods extends Component {
@@ -13,6 +13,8 @@ export default class Form_neighborhoods extends Component {
     };
 
     this.handleClick = this.handleClick.bind(this);
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
   handleOpenModal() {
@@ -24,52 +26,53 @@ export default class Form_neighborhoods extends Component {
   }
 
   handleClick(event) {
-    const borough = event.target.name;
-    console.log(event.target);
+    const borough = event.target.getAttribute('name');
+    console.log(event.target.getAttribute('name'));
 
     this.setState({
       selectedBorough: borough,
-      showModal:true
+      showModal: true
     });
+    console.log(this.state)
   }
 
   render() {
+
     return (
       <div className='form-neighborhoods'>
         {
-          Object.keys(allNeighborhoods).map((neighborhood) => {
+          Object.keys(allBoroughs).map((borough) => {
             return (
-              <div key={neighborhood}
-                name={neighborhood}
+              <li key={borough}
+                name={borough}
                 onClick={this.handleClick}>
-                {neighborhood.toUpperCase()}
-              </div>
+                {borough.toUpperCase()}
+              </li>
             );
           })
         }
-        {/* <ReactModal>
-                   { const boroughNeighborhoods = allNeighborhoods[this.state.selectedBorough];
-                    Object.keys(boroughNeighborhoods).map((neighborhood)=>{
-                      return (
-                         <label key={boroughNeighborhoods[neighborhood]}>
-                          <input type='checkbox'
-                            className='form-neighborhoods__list-item-2'
-                            name={neighborhood}
-                            onChange={this.props.handleChange} />
-                        </label>
-                      )
-                    })}
-          {neighborhoods[this.state.selectedBorough].map((neighborhood) => {
-            return (
-              <label key={neighborhood.code}>
-                <input type='checkbox'
-                  className='form-neighborhoods__list-item-2'
-                  name={neighborhood.name}
-                  onChange={this.props.handleChange} />
-              </label>
-            );
-          })}
-        </ReactModal> */}
+        {
+          this.state.selectedBorough &&
+          <ReactModal
+            isOpen={this.state.showModal}
+            contentLabel="NYC Borough and Neighborhood List"
+            onRequestClose={this.handleCloseModal}>
+            <h1>Hello World</h1>
+            {
+              Object.keys(allBoroughs[this.state.selectedBorough]).map((neighborhood) => {
+                return (
+                  <label key={allBoroughs[this.state.selectedBorough][neighborhood]}>
+                    <input type='checkbox'
+                      className='form-neighborhoods__list-item-2'
+                      name={neighborhood}
+                      onChange={this.props.handleChange} />
+                    {neighborhood}
+                  </label>
+                );
+              })
+            }
+          </ReactModal>
+        }
       </div>
     );
   }
