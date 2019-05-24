@@ -40,24 +40,27 @@ export default class Form_neighborhoods extends Component {
 
     return (
       <div className='form-neighborhoods'>
-        {
-          Object.keys(allBoroughs).map((borough) => {
-            return (
-              <li key={borough}
-                name={borough}
-                onClick={this.handleClick}>
-                {borough.toUpperCase()}
-              </li>
-            );
-          })
-        }
+        What Neighborhoods are you interested in?
+        <div className='form-neighborhood__borough-list'>
+          {
+            Object.keys(allBoroughs).map((borough) => {
+              return (
+                <div key={borough}
+                  className='form-neighborhood__borough-list-item'
+                  name={borough}
+                  onClick={this.handleClick}>
+                  {borough.toUpperCase()}
+                </div>
+              );
+            })
+          }
+        </div>
         {
           this.state.selectedBorough &&
           <ReactModal
             isOpen={this.state.showModal}
             contentLabel="NYC Borough and Neighborhood List"
             onRequestClose={this.handleCloseModal}>
-            <h1>Hello World</h1>
             {
               Object.keys(allBoroughs[this.state.selectedBorough]).map((neighborhood) => {
                 return (

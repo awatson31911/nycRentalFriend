@@ -23,24 +23,24 @@ export default class Form extends Component {
       hasCats: false,
       hasFitnessGym: false,
       selectedNeighborhoods: {
-        brooklyn:{
-          all:false,
+        brooklyn: {
+          all: false,
           neighborhoods: {}
         },
-        bronx:{
-          all:false,
+        bronx: {
+          all: false,
           neighborhoods: {}
         },
-        manhattan:{
-          all:false,
+        manhattan: {
+          all: false,
           neighborhoods: {}
         },
-        queens:{
-          all:false,
+        queens: {
+          all: false,
           neighborhoods: {}
         },
-        statenIsland:{
-          all:false,
+        statenIsland: {
+          all: false,
           neighborhoods: {}
         }
       }
@@ -63,17 +63,17 @@ export default class Form extends Component {
     return (
       <form className='form-container'>
 
-        <div className='form-container__row'>
+        <div className='form-container__row form-container__row--1'>
           <Form_neighborhoods handleChange={this.handleChange} />
           <Form_prices handleChange={this.handleChange} />
         </div>
 
-        <div className='form-container__row'>
+        <div className='form-container__row form-container__row--2'>
           <GoogleMap />
           <Form_amenities handleChange={this.handleChange} />
-          <input type='submit' value='Submit Rental Criteria' />
         </div>
 
+        
       </form>
     );
   }
