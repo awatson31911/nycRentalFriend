@@ -29,6 +29,20 @@
   flex: 2;
 }
 
+.button--submit {
+  text-align: center;
+
+  button {
+    border-radius: 1.6rem;
+    box-shadow: 1px 1px 4px black;
+    height: 4rem;
+    width: 8rem;
+    font-size: 1.6rem;
+    margin: 1rem 0;
+    cursor: pointer;
+  }
+}
+
 /* ELEMENTS ------------------------------------------ */
 
 .form-prices__list {
@@ -36,25 +50,17 @@
   flex-direction: column;
 }
 
-.form-amenities__group {
+.form-amenities__list {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-}
-
-.form-amenities__list {
-  display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  font-size: 2.5rem; 
-  margin-bottom: 8px;
+  font-size: 2.5rem;
 }
 
 .form-amenities__list-item {
   cursor: pointer;
   font-size: 1.6rem;
-  margin-top: 5px;
 }
 
 .form-neighborhood__borough-list {
@@ -71,9 +77,9 @@
 
 /* MODIFIERS ------------------------------------------ */
 .form-container__row--2 {
-  flex:2;
+  flex: 2;
 }
 
 .form-container__row--1 {
-  flex:1;
+  flex: 1;
 }

@@ -1,4 +1,4 @@
-export const  rentHopCodes = {
+export const rentHopCodes = {
   brooklyn: {
     'Bedford-Stuyvesant': '38'
     , 'Bushwick': '40'

@@ -27,13 +27,11 @@ export default class Form_neighborhoods extends Component {
 
   handleClick(event) {
     const borough = event.target.getAttribute('name');
-    console.log(event.target.getAttribute('name'));
 
     this.setState({
       selectedBorough: borough,
       showModal: true
     });
-    console.log(this.state)
   }
 
   render() {

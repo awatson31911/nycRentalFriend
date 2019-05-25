@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+import { rentHopCodes as neighborhoodCodes } from '../utils/neighborhoodCodes';
+
 import GoogleMap from './GoogleMap';
 import Form_amenities from './Form_amenities';
 import Form_prices from './Form_prices';
 import Form_neighborhoods from './Form_neighborhoods';
+//import { url } from 'inspector';
 
 export default class Form extends Component {
   constructor() {
@@ -46,7 +51,6 @@ export default class Form extends Component {
       }
     };
     this.handleChange = this.handleChange.bind(this);
-
   }
 
   handleChange(event) {
@@ -73,8 +77,37 @@ export default class Form extends Component {
           <Form_amenities handleChange={this.handleChange} />
         </div>
 
-        
+        <div className="button--submit" onSubmit={(event) => {
+          this.props.handleSubmit(
+            event,
+            neighborhoodCodes,
+            this.state.priceMin,
+            this.state.priceMax,
+            this.state.isApartment,
+            this.state.isCondo,
+            this.state.isCoOp,
+            this.state.hasElevator,
+            this.state.hasWasherDryerInUnit,
+            this.state.hasWasherDryerInBuilding,
+            this.state.hasDishwasher,
+            this.state.hasSharedOutdoorArea,
+            this.state.hasPrivateOutdoorArea,
+            this.state.hasDogs,
+            this.state.hasCats,
+            this.state.hasFitnessGym,
+            this.state.selectedNeighborhoods
+          );
+        }}>
+          <button type='submit' >
+            Submit
+          </button>
+        </div>
+
       </form>
     );
   }
 }
+
+Form.PropTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+};
