@@ -60,7 +60,7 @@ function mapNeighborhoodCodes(selectedNeighborhoods, neighborhoodCodes) {
         default:
           break;
       }
-    } else if (allBoroughNeighborhoods.length) {
+    } else if (allBoroughNeighborhoods.length > 0) {
       allBoroughNeighborhoods.forEach((neighborhood, j) => {
         if (j === 0 && firstCode) {
           resultQueryStr += `${neighborhoodCodes[boroughName][neighborhood]}`;
@@ -71,7 +71,7 @@ function mapNeighborhoodCodes(selectedNeighborhoods, neighborhoodCodes) {
       });
     }
   }
-  return resultQueryStr += '&';
+  return resultQueryStr.length <= 18 ? resultQueryStr= '' : resultQueryStr+= '&';
 }
 
 export default function buildURL_rentHop(neighborhoodCodes,
@@ -89,13 +89,17 @@ export default function buildURL_rentHop(neighborhoodCodes,
   neighborhoods) {
 
   const baseUrl = 'https://www.renthop.com/search/nyc?';
-  const bedroomStr = numBedrooms.map((num) => { //extrapalate into helper
-    return `bedrooms%5B%5D=${num}`;
-  }).join('&');
-  const bathroomStr = numBathrooms.map((num) => { //extrapalate into helper
-    return `bathrooms%5B%5D=${num}`;
-  }).join('&');
+  const bedroomStr = numBedrooms.length > 0
+    ? ( numBedrooms.map((num) => { //extrapalate into helper
+      return `bedrooms%5B%5D=${num}`;
+    }).join('&') + '&' )
+    : '';
+  const bathroomStr = numBathrooms.length > 0
+    ? ( numBathrooms.map((num) => { //extrapalate into helper
+      return `bathrooms%5B%5D=${num}`;
+    }).join('&') + '&' )
+    : '';
   const neighborhoodStr = mapNeighborhoodCodes(neighborhoods, neighborhoodCodes);
 
-  return `${baseUrl}min_price=${minPrice}&max_price=${maxPrice}&${bedroomStr}&${bathroomStr}&${hasCats ? 'features%5B%5D=Cats+Allowed&' : ''}${hasDogs ? 'features%5B%5D=Dogs+Allowed&' : ''}${hasWasherDryerInUnit ? 'features%5B%5D=Laundry+In+Unit&' : ''}${hasWasherDryerInBuilding ? 'features%5B%5D=Laundry+In+Building&' : ''}${hasSharedOutdoorArea ? 'features%5B%5D=Common+Outdoor+Space&' : ''}${hasPrivateOutdoorArea ? 'features%5B%5D=Private+Outdoor+Space&' : ''}${hasFitnessGym ? 'features%5B%5D=Fitness+Center&' : ''}${neighborhoodStr}sort=hopscore&page=1&search=1`;
+  return `${baseUrl}min_price=${minPrice}&max_price=${maxPrice}&${bedroomStr}${bathroomStr}${hasCats ? 'features%5B%5D=Cats+Allowed&' : ''}${hasDogs ? 'features%5B%5D=Dogs+Allowed&' : ''}${hasWasherDryerInUnit ? 'features%5B%5D=Laundry+In+Unit&' : ''}${hasWasherDryerInBuilding ? 'features%5B%5D=Laundry+In+Building&' : ''}${hasSharedOutdoorArea ? 'features%5B%5D=Common+Outdoor+Space&' : ''}${hasPrivateOutdoorArea ? 'features%5B%5D=Private+Outdoor+Space&' : ''}${hasFitnessGym ? 'features%5B%5D=Fitness+Center&' : ''}${neighborhoodStr}sort=hopscore&page=1&search=1`;
 }

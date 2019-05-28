@@ -9,7 +9,6 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
-
       rentHop: '',
       streetEasy: '',
       zumper: ''
@@ -35,22 +34,26 @@ export default class App extends Component {
     neighborhoods) {
 
     event.preventDefault();
+      console.log(event, this.state)
+    const resultUrl = urlBuilder_rentHop(
+      neighborhoodCodes,
+      minPrice,
+      maxPrice,
+      numBedrooms,
+      numBathrooms,
+      hasDogs,
+      hasCats,
+      hasWasherDryerInUnit,
+      hasWasherDryerInBuilding,
+      hasSharedOutdoorArea,
+      hasPrivateOutdoorArea,
+      hasFitnessGym,
+      neighborhoods
+    );
+    console.log(`this-----> ${this}
+    result url -----> ${resultUrl}`)
     this.setState({
-      rentHop: urlBuilder_rentHop(
-        neighborhoodCodes,
-        minPrice,
-        maxPrice,
-        numBedrooms,
-        numBathrooms,
-        hasDogs,
-        hasCats,
-        hasWasherDryerInUnit,
-        hasWasherDryerInBuilding,
-        hasSharedOutdoorArea,
-        hasPrivateOutdoorArea,
-        hasFitnessGym,
-        neighborhoods
-      )
+      rentHop: resultUrl
     });
   }
 

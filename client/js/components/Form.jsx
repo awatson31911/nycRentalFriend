@@ -15,6 +15,8 @@ export default class Form extends Component {
     this.state = {
       priceMin: 0,
       priceMax: 50000,
+      numBedrooms: [],
+      numBathrooms: [],
       isApartment: false,
       isCondo: false,
       isCoOp: false,
@@ -65,7 +67,30 @@ export default class Form extends Component {
 
   render() {
     return (
-      <form className='form-container'>
+      <form className='form-container' onSubmit={(event) => {
+        this.props.handleSubmit(
+          event,
+          neighborhoodCodes,
+          this.state.priceMin,
+          this.state.priceMax,
+          this.state.numBedrooms,
+          this.state.numBathrooms,
+          this.state.isApartment,
+          this.state.isCondo,
+          this.state.isCoOp,
+          this.state.hasElevator,
+          this.state.hasWasherDryerInUnit,
+          this.state.hasWasherDryerInBuilding,
+          this.state.hasDishwasher,
+          this.state.hasSharedOutdoorArea,
+          this.state.hasPrivateOutdoorArea,
+          this.state.hasDogs,
+          this.state.hasCats,
+          this.state.hasFitnessGym,
+          this.state.selectedNeighborhoods
+        );
+      }
+      }>
 
         <div className='form-container__row form-container__row--1'>
           <Form_neighborhoods handleChange={this.handleChange} />
@@ -77,28 +102,8 @@ export default class Form extends Component {
           <Form_amenities handleChange={this.handleChange} />
         </div>
 
-        <div className="button--submit" onSubmit={(event) => {
-          this.props.handleSubmit(
-            event,
-            neighborhoodCodes,
-            this.state.priceMin,
-            this.state.priceMax,
-            this.state.isApartment,
-            this.state.isCondo,
-            this.state.isCoOp,
-            this.state.hasElevator,
-            this.state.hasWasherDryerInUnit,
-            this.state.hasWasherDryerInBuilding,
-            this.state.hasDishwasher,
-            this.state.hasSharedOutdoorArea,
-            this.state.hasPrivateOutdoorArea,
-            this.state.hasDogs,
-            this.state.hasCats,
-            this.state.hasFitnessGym,
-            this.state.selectedNeighborhoods
-          );
-        }}>
-          <button type='submit' >
+        <div className="button--submit" >
+          <button type='submit'>
             Submit
           </button>
         </div>
