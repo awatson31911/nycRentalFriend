@@ -15,6 +15,11 @@ export default class Form_neighborhoods extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.getParentElement = this.getParentElement.bind(this);
+  }
+
+  getParentElement() {
+    return document.querySelector('.form-neighborhood__borough-list');
   }
 
   handleOpenModal() {
@@ -56,9 +61,13 @@ export default class Form_neighborhoods extends Component {
         {
           this.state.selectedBorough &&
           <ReactModal
-            isOpen={this.state.showModal}
+            isOpen={true}
             contentLabel="NYC Borough and Neighborhood List"
-            onRequestClose={this.handleCloseModal}>
+            onRequestClose={this.handleCloseModal}
+            className={`modal-${this.state.selectedBorough}`}
+            overlayClassName="overlay"
+            parentSelector={this.getParentElement}
+          >
             {
               Object.keys(allBoroughs[this.state.selectedBorough]).map((neighborhood) => {
                 return (
