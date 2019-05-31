@@ -1,5 +1,4 @@
-//export 
-const rentHopCodes = {
+export const rentHopCodes = {
   brooklyn: {
     'Bedford-Stuyvesant': '38'
     , 'Bushwick': '40'
@@ -164,7 +163,7 @@ const rentHopCodes = {
     , 'Far Rockaway': '156'
     , 'Rockaway Beach': '142'
   },
-  'staten island': {
+  'staten-island': {
     'East Shore': '27'
     , 'Mid-Island': '23'
     , 'North Shore': '24'
@@ -172,8 +171,7 @@ const rentHopCodes = {
   }
 };
 
-//export 
-const streetEasyCodes = {
+export const streetEasyCodes = {
   manhattan: {
     'Battery Park City': '112',
     'Central Harlem': '154',
@@ -338,7 +336,7 @@ const streetEasyCodes = {
     'Woodhaven': '422',
     'Woodside': '404',
   },
-  statenIsland: {
+  'staten-island': {
     'East Shore': '503',
     'Mid-Island': '505',
     'North Shore': '501',
@@ -346,73 +344,73 @@ const streetEasyCodes = {
   }
 };
 
-function helperChecker(cityCodes) {
-  const result = {};
-  const boroughs = Object.keys(cityCodes);
-  for (const borough of boroughs) {
-    const neighborhoods = Object.keys(cityCodes[borough]);
-    for (const neighborhood of neighborhoods) {
+// function helperChecker(cityCodes) {
+//   const result = {};
+//   const boroughs = Object.keys(cityCodes);
+//   for (const borough of boroughs) {
+//     const neighborhoods = Object.keys(cityCodes[borough]);
+//     for (const neighborhood of neighborhoods) {
 
-      switch (borough) {
-        case 'bronx':
-          if (cityCodes[borough][neighborhood] < 200) {
-            if (result[borough]) {
-              result[borough][neighborhood.toLowerCase()] = cityCodes[borough][neighborhood];
-            } else {
-              result[borough] = {};
-              result[borough][neighborhood.toLowerCase()] = cityCodes[borough][neighborhood];
-            }
-          }
-          break;
-        case 'brooklyn':
-          if (cityCodes[borough][neighborhood] < 300) {
-            cityCodes[borough][neighborhood]
-            if (result[borough]) {
-              result[borough][neighborhood.toLowerCase()] = cityCodes[borough][neighborhood];
-            } else {
-              result[borough] = {};
-              result[borough][neighborhood.toLowerCase()] = cityCodes[borough][neighborhood];
-            }
-          }
-          break;
-        case 'manhattan':
-          if (cityCodes[borough][neighborhood] < 100) {
-            if (result[borough]) {
-              result[borough][neighborhood.toLowerCase()] = cityCodes[borough][neighborhood];
-            } else {
-              result[borough] = {};
-              result[borough][neighborhood.toLowerCase()] = cityCodes[borough][neighborhood];
-            }
-          }
-          break;
-        case 'queens':
-          if (cityCodes[borough][neighborhood] < 400) {
-            if (result[borough]) {
-              result[borough][neighborhood.toLowerCase()] = cityCodes[borough][neighborhood];
-            } else {
-              result[borough] = {};
-              result[borough][neighborhood.toLowerCase()] = cityCodes[borough][neighborhood];
-            }
-          }
-          break;
-        case 'statenIsland':
-          console.log('staten')
-          if (cityCodes[borough][neighborhood] < 500) {
-            if (result[borough]) {
-              result[borough][neighborhood.toLowerCase()] = cityCodes[borough][neighborhood];
-            } else {
-              result[borough] = {};
-              result[borough][neighborhood.toLowerCase()] = cityCodes[borough][neighborhood];
-            }
-          }
-          break;
-        default:
-          break;
-      }
-    }
-  }
-  console.log(result);
-}
+//       switch (borough) {
+//         case 'bronx':
+//           if (cityCodes[borough][neighborhood] < 200) {
+//             if (result[borough]) {
+//               result[borough][neighborhood.toLowerCase()] = cityCodes[borough][neighborhood];
+//             } else {
+//               result[borough] = {};
+//               result[borough][neighborhood.toLowerCase()] = cityCodes[borough][neighborhood];
+//             }
+//           }
+//           break;
+//         case 'brooklyn':
+//           if (cityCodes[borough][neighborhood] < 300) {
+//             cityCodes[borough][neighborhood]
+//             if (result[borough]) {
+//               result[borough][neighborhood.toLowerCase()] = cityCodes[borough][neighborhood];
+//             } else {
+//               result[borough] = {};
+//               result[borough][neighborhood.toLowerCase()] = cityCodes[borough][neighborhood];
+//             }
+//           }
+//           break;
+//         case 'manhattan':
+//           if (cityCodes[borough][neighborhood] < 100) {
+//             if (result[borough]) {
+//               result[borough][neighborhood.toLowerCase()] = cityCodes[borough][neighborhood];
+//             } else {
+//               result[borough] = {};
+//               result[borough][neighborhood.toLowerCase()] = cityCodes[borough][neighborhood];
+//             }
+//           }
+//           break;
+//         case 'queens':
+//           if (cityCodes[borough][neighborhood] < 400) {
+//             if (result[borough]) {
+//               result[borough][neighborhood.toLowerCase()] = cityCodes[borough][neighborhood];
+//             } else {
+//               result[borough] = {};
+//               result[borough][neighborhood.toLowerCase()] = cityCodes[borough][neighborhood];
+//             }
+//           }
+//           break;
+//         case 'statenIsland':
+//           console.log('staten')
+//           if (cityCodes[borough][neighborhood] < 500) {
+//             if (result[borough]) {
+//               result[borough][neighborhood.toLowerCase()] = cityCodes[borough][neighborhood];
+//             } else {
+//               result[borough] = {};
+//               result[borough][neighborhood.toLowerCase()] = cityCodes[borough][neighborhood];
+//             }
+//           }
+//           break;
+//         default:
+//           break;
+//       }
+//     }
+//   }
+//   console.log(result);
+// }
 
-helperChecker(streetEasyCodes)
+// helperChecker(streetEasyCodes)
 
