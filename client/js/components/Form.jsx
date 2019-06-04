@@ -202,8 +202,8 @@ export default class Form extends Component {
 
 
   handleChange(event) {
-    const name = event.name;
     const target = event.target;
+    const name = target.name;
     const value = target.type === 'checkbox' ? target.checked : target.value;
 
     this.setState({
@@ -216,13 +216,7 @@ export default class Form extends Component {
     const borough = target.name.split('-')[0];
     const neighborhood = target.name.split('-')[1];
     const value = target.checked;
-    console.log(`target--->${target} 
-    target name ---> ${target.name}
-    target checked ---> ${target.checked}
-    new value ---> ${value}
-    target borough ---> ${borough}
-    target neighborhood ---> ${neighborhood}`);
-
+    
     this.setState({
       [neighborhood]: value
     });
