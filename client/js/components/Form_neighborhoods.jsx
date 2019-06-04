@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import PropTypes from 'prop-types';
-import { streetEasyCodes as allNeighborhoods } from '../utils/neighborhoodCodes';
+import { allNeighborhoods } from '../utils/neighborhoodCodes';
 
 
 export default class Form_neighborhoods extends Component {
@@ -93,7 +93,7 @@ export default class Form_neighborhoods extends Component {
                     </a>
                   </div>
 
-                  { //console.log(borough, allNeighborhoods, allNeighborhoods[borough], allNeighborhoods[borough].boroughNeighborhoods)
+                  { 
                     Object.keys(allNeighborhoods[borough]).map((neighborhood, i) => {
                       return (
                         <label key={neighborhood+i.toString()}>

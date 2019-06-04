@@ -20,35 +20,12 @@ export default class App extends Component {
 
   handleSubmit(event,
     neighborhoodCodes,
-    minPrice,
-    maxPrice,
-    numBedrooms,
-    numBathrooms,
-    hasDogs,
-    hasCats,
-    hasWasherDryerInUnit,
-    hasWasherDryerInBuilding,
-    hasSharedOutdoorArea,
-    hasPrivateOutdoorArea,
-    hasFitnessGym,
-    neighborhoods) {
+    state) {
 
     event.preventDefault();
-      console.log(event, this.state)
     const resultUrl = urlBuilder_rentHop(
       neighborhoodCodes,
-      minPrice,
-      maxPrice,
-      numBedrooms,
-      numBathrooms,
-      hasDogs,
-      hasCats,
-      hasWasherDryerInUnit,
-      hasWasherDryerInBuilding,
-      hasSharedOutdoorArea,
-      hasPrivateOutdoorArea,
-      hasFitnessGym,
-      neighborhoods
+      state
     );
     console.log(`this-----> ${this}
     result url -----> ${resultUrl}`)

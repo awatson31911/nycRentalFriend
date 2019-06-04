@@ -1,34 +1,33 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { streetEasyCodes as neighborhoodCodes } from '../utils/neighborhoodCodes';
+import { rentHopCodes } from '../utils/neighborhoodCodes';
 
 import GoogleMap from './GoogleMap';
 import Form_amenities from './Form_amenities';
 import Form_prices from './Form_prices';
 import Form_neighborhoods from './Form_neighborhoods';
-//import { url } from 'inspector';
 
 export default class Form extends Component {
   constructor() {
     super();
     this.state = {
-      priceMin: 0,
-      priceMax: 50000,
-      numBedrooms: [],
-      numBathrooms: [],
-      isApartment: false,
-      isCondo: false,
-      isCoOp: false,
-      hasElevator: false,
-      hasWasherDryerInUnit: false,
-      hasWasherDryerInBuilding: false,
-      hasDishwasher: false,
-      hasSharedOutdoorArea: false,
-      hasPrivateOutdoorArea: false,
-      hasDogs: false,
-      hasCats: false,
-      hasFitnessGym: false,
+      amenity_priceMin: 0,
+      amenity_priceMax: 50000,
+      amenity_numBedrooms: [],
+      amenity_numBathrooms: [],
+      amenity_isApartment: false,
+      amenity_isCondo: false,
+      amenity_isCoOp: false,
+      amenity_hasElevator: false,
+      amenity_hasWasherDryerInUnit: false,
+      amenity_hasWasherDryerInBuilding: false,
+      amenity_hasDishwasher: false,
+      amenity_hasSharedOutdoorArea: false,
+      amenity_hasPrivateOutdoorArea: false,
+      amenity_hasDogs: false,
+      amenity_hasCats: false,
+      amenity_hasFitnessGym: false,
       allBrooklyn: false,
       'Bath Beach': false,
       'Bay Ridge': false,
@@ -207,16 +206,15 @@ export default class Form extends Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
 
     this.setState({
-      [name]: value
+      [`amenity_${name}`]: value
     });
   }
 
   handleChangeNeighborhood(event) {
     const target = event.target;
-    const borough = target.name.split('-')[0];
     const neighborhood = target.name.split('-')[1];
     const value = target.checked;
-    
+
     this.setState({
       [neighborhood]: value
     });
@@ -227,24 +225,8 @@ export default class Form extends Component {
       <form className='form-container' onSubmit={(event) => {
         this.props.handleSubmit(
           event,
-          neighborhoodCodes,
-          this.state.priceMin,
-          this.state.priceMax,
-          this.state.numBedrooms,
-          this.state.numBathrooms,
-          this.state.isApartment,
-          this.state.isCondo,
-          this.state.isCoOp,
-          this.state.hasElevator,
-          this.state.hasWasherDryerInUnit,
-          this.state.hasWasherDryerInBuilding,
-          this.state.hasDishwasher,
-          this.state.hasSharedOutdoorArea,
-          this.state.hasPrivateOutdoorArea,
-          this.state.hasDogs,
-          this.state.hasCats,
-          this.state.hasFitnessGym,
-          this.state.selectedNeighborhoods
+          rentHopCodes,
+          this.state
         );
       }
       }>
@@ -272,6 +254,6 @@ export default class Form extends Component {
   }
 }
 
-Form.PropTypes = {
+Form.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
 };
