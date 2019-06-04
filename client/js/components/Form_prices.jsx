@@ -8,11 +8,11 @@ export default function Form_prices(props) {
     <div className='form-prices'>
       <label className='form-prices__list'>
         Price Range:
-        <input type='price'
+        <input type='text'
           className='form-prices__list-item'
           name='priceMin'
           onChange={props.handleChange} />
-        <input type='price'
+        <input type='text'
           className='form-prices__list-item'
           name='priceMax'
           onChange={props.handleChange} />

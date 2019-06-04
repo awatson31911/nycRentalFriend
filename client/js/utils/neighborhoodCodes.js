@@ -53,7 +53,7 @@ export const rentHopCodes = {
   bronx: {
     'Bedford Park': '131'
     , 'Belmont': '139'
-    ,'Bronxwood': '110'
+    , 'Bronxwood': '110'
     , 'Castle Hill': '170'
     , 'Concourse': '136'
     , 'Concourse Village': '150'
@@ -87,7 +87,7 @@ export const rentHopCodes = {
     , 'Woodlawn Heights': '190'
   }
   , manhattan: {
-    'Battery Park City': '51'
+    'Battery Park': '51'
     , 'Chinatown': '102'
     , 'Civic Center': '92'
     , 'East Village': '35'
@@ -163,7 +163,7 @@ export const rentHopCodes = {
     , 'Far Rockaway': '156'
     , 'Rockaway Beach': '142'
   },
-  'staten-island': {
+  'statenIsland': {
     'East Shore': '27'
     , 'Mid-Island': '23'
     , 'North Shore': '24'
@@ -173,7 +173,7 @@ export const rentHopCodes = {
 
 export const streetEasyCodes = {
   manhattan: {
-    'Battery Park City': '112',
+    'Battery Park': '112',
     'Central Harlem': '154',
     'Chelsea': '115',
     'Chinatown': '110',
@@ -206,7 +206,7 @@ export const streetEasyCodes = {
     'Upper West Side': '137',
     'Washington Heights': '149',
     'West Harlem': '153',
-    'West Village': '157',
+    'West Village': '157'
   },
   bronx: {
     'Bedford Park': '221',
@@ -242,7 +242,7 @@ export const streetEasyCodes = {
     'West Farms': '219',
     'Westchester Village': '272',
     'Williamsbridge': '242',
-    'Woodlawn Heights': '244',
+    'Woodlawn Heights': '244'
   },
   brooklyn: {
     'Bath Beach': '336',
@@ -293,7 +293,7 @@ export const streetEasyCodes = {
     'Sunset Park': '323',
     'Vinegar Hill': '308',
     'Williamsburg': '302',
-    'Windsor Terrace': '324',
+    'Windsor Terrace': '324'
   },
   queens: {
     'Astoria': '401',
@@ -334,13 +334,13 @@ export const streetEasyCodes = {
     'Sunnyside': '403',
     'Whitestone': '417',
     'Woodhaven': '422',
-    'Woodside': '404',
+    'Woodside': '404'
   },
-  'staten-island': {
+  statenIsland: {
     'East Shore': '503',
     'Mid-Island': '505',
     'North Shore': '501',
-    'South Shore': '502',
+    'South Shore': '502'
   }
 };
 

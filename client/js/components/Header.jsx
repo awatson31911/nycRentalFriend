@@ -13,7 +13,7 @@ export default function Header () {
       <header className="main-navigation">
 
         <div className="main-navigation__list">
-          <a href="#o" className="main-navigation__list--1">Rental Criteria</a>
+          <a href="#form" className="main-navigation__list--1">Rental Criteria</a>
           <a href="#search-results" className="main-navigation__list--2">Search Results</a>
           <a href="#site-info" className="main-navigation__list--3">Rental Site Info</a>
         </div>
@@ -24,7 +24,7 @@ export default function Header () {
 
 
       <div className="logo-box">
-        <img src="../public/img/macbook.jpg" alt="Logo" className="logo" />
+        LOGO
       </div>
 
     </div>

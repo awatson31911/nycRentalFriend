@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import PropTypes from 'prop-types';
-import { rentHopCodes as allBoroughs } from '../utils/neighborhoodCodes';
+import { streetEasyCodes as allNeighborhoods } from '../utils/neighborhoodCodes';
 
 
 export default class Form_neighborhoods extends Component {
@@ -12,7 +12,6 @@ export default class Form_neighborhoods extends Component {
     };
 
     this.handleClick = this.handleClick.bind(this);
-    this.handleCloseModal = this.handleCloseModal.bind(this);
     this.getParentElement = this.getParentElement.bind(this);
   }
 
@@ -20,8 +19,8 @@ export default class Form_neighborhoods extends Component {
     return document.querySelector('.form-neighborhoods');
   }
 
-  handleCloseModal() {
-    //this.setState({ showModal: false });
+  handleSelectAll() {
+
   }
 
   handleClick(event) {
@@ -31,14 +30,14 @@ export default class Form_neighborhoods extends Component {
       ? document.getElementsByClassName(`modal-${this.state.selectedBorough}`)[0]
       : '';
     const newBorough = this.state.selectedBorough === borough ? '' : borough;
-    const newModalState = newBorough.length ? 'inline-block' : 'none';
+    const newModalState = newBorough.length ? 'flex' : 'none';
     this.setState(() => {
       return {
         selectedBorough: newBorough
       };
     });
 
-    if (prevBorough)  {
+    if (prevBorough) {
       prevBorough.style.display = 'none';
     }
 
@@ -47,14 +46,15 @@ export default class Form_neighborhoods extends Component {
   }
 
   render() {
-
+    const allBoroughs = Object.keys(allNeighborhoods);
+    
     return (
       <div className='form-neighborhoods'>
         What Neighborhoods are you interested in?
         <div className='form-neighborhood__borough-list'>
 
           {
-            Object.keys(allBoroughs).map((borough) => {
+            allBoroughs.map((borough) => {
               return (
                 <div key={borough}
                   className='form-neighborhood__borough-list-item'
@@ -67,24 +67,39 @@ export default class Form_neighborhoods extends Component {
           }
 
           {
-            Object.keys(allBoroughs).map((borough, i) => {
+            allBoroughs.map((borough, i) => {
               return (
                 <ReactModal
-                  key={borough + i}
+                  key={borough + i.toString()}
                   isOpen={true}
                   contentLabel="NYC Borough and Neighborhood List"
-                  onRequestClose={this.handleCloseModal}
-                  className={`modal-${borough}`}
+                  className={`modal modal-${borough}`}
                   overlayClassName="modal-overlay"
                   parentSelector={this.getParentElement}
                 >
-                  {
-                    Object.keys(allBoroughs[borough]).map((neighborhood) => {
+                  <div className='form-neighborhoods__all-behavior'>
+                    <a className='form-neighborhoods--select-all'
+                      onClick={true}
+                    >
+                      Select All
+                    </a>
+
+                    <span style={{ color: '#bbbbbb' }}>&nbsp;|&nbsp;</span>
+
+                    <a className='form-neighborhoods--clear-all'
+                      onClick={true}
+                    >
+                      Clear
+                    </a>
+                  </div>
+
+                  { //console.log(borough, allNeighborhoods, allNeighborhoods[borough], allNeighborhoods[borough].boroughNeighborhoods)
+                    Object.keys(allNeighborhoods[borough]).map((neighborhood, i) => {
                       return (
-                        <label key={allBoroughs[borough][neighborhood]}>
+                        <label key={neighborhood+i.toString()}>
                           <input type='checkbox'
                             className='form-neighborhoods__list-item-2'
-                            name={neighborhood}
+                            name={`${borough}-${neighborhood}`}
                             onChange={this.props.handleChange} />
                           {neighborhood}
                         </label>
@@ -105,5 +120,6 @@ export default class Form_neighborhoods extends Component {
 
 
 Form_neighborhoods.propTypes = {
-  handleChange: PropTypes.func.isRequired
+  handleChange: PropTypes.func.isRequired,
+  allNeighborhoods: PropTypes.object.isRequired
 };
