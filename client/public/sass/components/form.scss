@@ -17,7 +17,7 @@
   flex: 2;
 }
 
-.form-prices {
+.form-main-criteria {
   flex: 1;
 }
 
@@ -45,7 +45,7 @@
 
 /* ELEMENTS ------------------------------------------ */
 
-.form-prices__list {
+.form-main-criteria__list {
   display: flex;
   flex-direction: column;
 }
@@ -76,11 +76,9 @@
 }
 
 .form-neighborhoods__all-behavior {
-  cursor: pointer;
   margin: 3px;
   color: blue;
   font-size: 1.4rem;
-
 }
 
 /* MODIFIERS ------------------------------------------ */
@@ -90,4 +88,12 @@
 
 .form-container__row--1 {
   flex: 1;
+}
+
+.form-neighborhoods--select-all {
+  cursor: pointer;
+}
+
+.form-neighborhoods--clear-all {
+  cursor: pointer;
 }

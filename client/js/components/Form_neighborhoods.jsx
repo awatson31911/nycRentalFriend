@@ -19,10 +19,6 @@ export default class Form_neighborhoods extends Component {
     return document.querySelector('.form-neighborhoods');
   }
 
-  handleSelectAll() {
-
-  }
-
   handleClick(event) {
     const borough = event.target.getAttribute('name');
     const boroughModal = document.getElementsByClassName(`modal-${borough}`)[0];
@@ -47,7 +43,7 @@ export default class Form_neighborhoods extends Component {
 
   render() {
     const allBoroughs = Object.keys(allNeighborhoods);
-    
+
     return (
       <div className='form-neighborhoods'>
         What Neighborhoods are you interested in?
@@ -79,7 +75,8 @@ export default class Form_neighborhoods extends Component {
                 >
                   <div className='form-neighborhoods__all-behavior'>
                     <a className='form-neighborhoods--select-all'
-                      onClick={true}
+                      name='select-all'
+                      onClick={(event) => this.props.handleSelectAll(borough, event.target)}
                     >
                       Select All
                     </a>
@@ -87,19 +84,21 @@ export default class Form_neighborhoods extends Component {
                     <span style={{ color: '#bbbbbb' }}>&nbsp;|&nbsp;</span>
 
                     <a className='form-neighborhoods--clear-all'
-                      onClick={true}
+                      name='clear-all'
+                      onClick={(event) => this.props.handleSelectAll(borough, event.target)}
                     >
                       Clear
                     </a>
                   </div>
 
-                  { 
+                  {
                     Object.keys(allNeighborhoods[borough]).map((neighborhood, i) => {
                       return (
-                        <label key={neighborhood+i.toString()}>
+                        <label key={neighborhood + i.toString()}>
                           <input type='checkbox'
                             className='form-neighborhoods__list-item-2'
                             name={`${borough}-${neighborhood}`}
+                            checked={this.props.allNeighborhoods[neighborhood]}
                             onChange={this.props.handleChange} />
                           {neighborhood}
                         </label>
@@ -121,5 +120,6 @@ export default class Form_neighborhoods extends Component {
 
 Form_neighborhoods.propTypes = {
   handleChange: PropTypes.func.isRequired,
-  allNeighborhoods: PropTypes.object.isRequired
+  allNeighborhoods: PropTypes.object.isRequired.bind,
+  handleSelectAll: PropTypes.func.isRequired
 };

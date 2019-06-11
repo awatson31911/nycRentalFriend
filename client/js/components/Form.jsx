@@ -5,7 +5,7 @@ import { rentHopCodes } from '../utils/neighborhoodCodes';
 
 import GoogleMap from './GoogleMap';
 import Form_amenities from './Form_amenities';
-import Form_prices from './Form_prices';
+import Form_mainCriteria from './Form_mainCriteria';
 import Form_neighborhoods from './Form_neighborhoods';
 
 export default class Form extends Component {
@@ -14,8 +14,14 @@ export default class Form extends Component {
     this.state = {
       amenity_priceMin: 0,
       amenity_priceMax: 50000,
-      amenity_numBedrooms: [],
-      amenity_numBathrooms: [],
+      amenity_numBedrooms1: false,
+      amenity_numBedrooms2: false,
+      amenity_numBedrooms3: false,
+      amenity_numBedrooms4: false,
+      amenity_numBathrooms1: false,
+      amenity_numBathrooms2: false,
+      amenity_numBathrooms3: false,
+      amenity_numBathrooms4: false,
       amenity_isApartment: false,
       amenity_isCondo: false,
       amenity_isCoOp: false,
@@ -28,7 +34,7 @@ export default class Form extends Component {
       amenity_hasDogs: false,
       amenity_hasCats: false,
       amenity_hasFitnessGym: false,
-      allBrooklyn: false,
+      all_brooklyn: false,
       'Bath Beach': false,
       'Bay Ridge': false,
       'Bedford-Stuyvesant': false,
@@ -78,7 +84,7 @@ export default class Form extends Component {
       'Vinegar Hill': false,
       'Williamsburg': false,
       'Windsor Terrace': false,
-      allBronx: false,
+      all_bronx: false,
       'Bedford Park': false,
       'Belmont': false,
       'Bronxwood': false,
@@ -113,7 +119,7 @@ export default class Form extends Component {
       'Westchester Village': false,
       'Williamsbridge': false,
       'Woodlawn Heights': false,
-      allManhattan: false,
+      all_manhattan: false,
       'Battery Park': false,
       'Central Harlem': false,
       'Chelsea': false,
@@ -148,7 +154,7 @@ export default class Form extends Component {
       'Washington Heights': false,
       'West Harlem': false,
       'West Village': false,
-      allQueens: false,
+      all_queens: false,
       'Astoria': false,
       'Auburndale': false,
       'Bayside': false,
@@ -197,6 +203,7 @@ export default class Form extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeNeighborhood = this.handleChangeNeighborhood.bind(this);
+    this.handleSelectAll = this.handleSelectAll.bind(this);
   }
 
 
@@ -205,9 +212,15 @@ export default class Form extends Component {
     const name = target.name;
     const value = target.type === 'checkbox' ? target.checked : target.value;
 
-    this.setState({
-      [`amenity_${name}`]: value
-    });
+    if (name.includes('price')) {
+      this.setState({
+        [name]: parseInt(value)
+      });
+    } else {
+      this.setState({
+        [name]: value
+      });
+    }
   }
 
   handleChangeNeighborhood(event) {
@@ -217,6 +230,22 @@ export default class Form extends Component {
 
     this.setState({
       [neighborhood]: value
+    });
+  }
+
+  handleSelectAll(borough, target) {
+    const selectAll = target.name === 'select-all';
+    const neighborhoodNodes = document.getElementsByClassName(`modal-${borough}`)[0]
+      .getElementsByTagName('label');
+
+
+    Array.from(neighborhoodNodes).map((neighborhoodNode) => {
+      const neighborhood = neighborhoodNode.textContent;
+      //neighborhoodNode.checked = selectAll;
+      this.setState({
+        [neighborhood]: selectAll,
+        [`all_${borough}`]: selectAll
+      });
     });
   }
 
@@ -234,13 +263,21 @@ export default class Form extends Component {
         <div className='form-container__row form-container__row--1'>
           <Form_neighborhoods
             handleChange={this.handleChangeNeighborhood}
-            allNeighborhoods={this.state.selectedNeighborhoods} />
-          <Form_prices handleChange={this.handleChange} />
+            allNeighborhoods={this.state}
+            handleSelectAll={this.handleSelectAll}
+          />
+          <Form_mainCriteria
+            handleChange={this.handleChange}
+            amenities={this.state}
+          />
         </div>
 
         <div className='form-container__row form-container__row--2'>
           <GoogleMap />
-          <Form_amenities handleChange={this.handleChange} />
+          <Form_amenities
+            handleChange={this.handleChange}
+            amenities={this.state}
+          />
         </div>
 
         <div className="button--submit" >
