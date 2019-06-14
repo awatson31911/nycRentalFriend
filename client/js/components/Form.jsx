@@ -12,7 +12,7 @@ export default class Form extends Component {
   constructor() {
     super();
     this.state = {
-      amenity_priceMin: 0,
+      amenity_priceMin: 250,
       amenity_priceMax: 50000,
       amenity_numBedrooms1: false,
       amenity_numBedrooms2: false,
@@ -202,7 +202,10 @@ export default class Form extends Component {
 
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
     this.handleChangeNeighborhood = this.handleChangeNeighborhood.bind(this);
+    this.handleChangeSelect = this.handleChangeSelect.bind(this);
     this.handleSelectAll = this.handleSelectAll.bind(this);
   }
 
@@ -211,10 +214,9 @@ export default class Form extends Component {
     const target = event.target;
     const name = target.name;
     const value = target.type === 'checkbox' ? target.checked : target.value;
-
-    if (name.includes('price')) {
+    if (name.includes('priceMin') || name.includes('priceMax')) {
       this.setState({
-        [name]: parseInt(value)
+        [name]: parseInt(value) ? parseInt(value) : 0
       });
     } else {
       this.setState({
@@ -231,6 +233,49 @@ export default class Form extends Component {
     this.setState({
       [neighborhood]: value
     });
+  }
+
+  handleChangeSelect(event) {
+    const target = event.target;
+    const value = target.value;
+    target.previousSibling.value = value;
+  }
+
+  handleBlur(event) {
+    const target = event.target;
+    target.parentNode.removeChild(target);
+  }
+
+  handleFocus(event) {
+    event.preventDefault();
+    const target = event.target;
+
+    if (!target.nextSibling) {
+      const selectElement = document.createElement('select');
+      const priceArray = [];
+
+      selectElement.className = 'form--price-list';
+      selectElement.size = 10;
+      selectElement.onchange = this.handleChangeSelect;
+      selectElement.onblur = this.handleBlur;
+
+      for (let price = 250; price < 50000; price += 250) {
+        priceArray.push(price);
+      }
+
+      priceArray.forEach((price) => {
+        const optionElement = document.createElement('option');
+        optionElement.key = price;
+        optionElement.value = `${price}`;
+        optionElement.innerText = `${price}`;
+        selectElement.append(optionElement);
+      });
+
+      document.getElementById(target.parentElement.id).append(selectElement);
+    } else {
+      const child = target.nextSibling;
+      child.parentNode.removeChild(child);
+    }
   }
 
   handleSelectAll(borough, target) {
@@ -268,6 +313,7 @@ export default class Form extends Component {
           />
           <Form_mainCriteria
             handleChange={this.handleChange}
+            handleFocus={this.handleFocus}
             amenities={this.state}
           />
         </div>

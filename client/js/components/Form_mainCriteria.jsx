@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 export default function Form_prices({
   handleChange,
+  handleFocus,
   amenities,
   amenities: {
     amenity_priceMax,
@@ -11,33 +12,44 @@ export default function Form_prices({
   }
 }) {
 
+  
   return (
-    <div className='form-main-criteria'>
-      Price Range:
+    <div className='form--main-criteria'>
 
-      <div className="form-prices">
+      <div className="form--prices">
+        Price Range:
+        <br />
 
-        <label className='form-prices__list'>
+        <div>
+
+          <label id='price-min-container' className='position-rel'>
+            MIN
+            <input type='text'
+              value={amenity_priceMin}
+              name='amenity_priceMin'
+              onChange={handleChange}
+              onFocus={handleFocus}
+              //onBlur={handleFocus}
+            />
+          </label>
+
+
+        </div>
+
+        <br />
+
+        <label id= 'price-max-container' className='position-rel'>
+          MAX
           <input type='text'
-            className='form-prices__list-item'
-            value={amenity_priceMin}
-            name='amenity_priceMin'
-            onChange={handleChange}
-          />
-
-          <br />
-
-          <input type='text'
-            className='form-prices__list-item'
             value={amenity_priceMax}
             name='amenity_priceMax'
             onChange={handleChange}
+            onFocus={handleFocus}
+            //onBlur={handleFocus}
           />
         </label>
 
       </div>
-
-
 
       <div className="form__bed">
         Number of Bedrooms:
@@ -50,7 +62,7 @@ export default function Form_prices({
               return (
                 <label key={`form__bed${num}`}>
                   <input type='checkbox'
-                    className='form-main-criteria__list-item'
+                    className='form--main-criteria__list-item'
                     value={amenities[numString]}
                     name={numString}
                     onChange={handleChange}
@@ -73,7 +85,7 @@ export default function Form_prices({
               return (
                 <label key={`form__bath${num}`}>
                   <input type='checkbox'
-                    className='form-main-criteria__list-item'
+                    className='form--main-criteria__list-item'
                     value={amenities[numString]}
                     name={numString}
                     onChange={handleChange}
@@ -91,6 +103,7 @@ export default function Form_prices({
 
 Form_prices.propTypes = {
   handleChange: PropTypes.func.isRequired,
+  handleFocus: PropTypes.func.isRequired,
   amenities: PropTypes.object.isRequired,
   amenity_priceMax: PropTypes.number.isRequired,
   amenity_priceMin: PropTypes.number.isRequired,

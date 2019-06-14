@@ -17,7 +17,7 @@
   flex: 2;
 }
 
-.form-main-criteria {
+.form--main-criteria {
   flex: 1;
 }
 
@@ -45,7 +45,7 @@
 
 /* ELEMENTS ------------------------------------------ */
 
-.form-main-criteria__list {
+.form--main-criteria__list {
   display: flex;
   flex-direction: column;
 }
@@ -79,6 +79,19 @@
   margin: 3px;
   color: blue;
   font-size: 1.4rem;
+}
+
+.form--price-list {
+  background: $color-white;
+  display: inline-block;
+  height: 10rem;
+  list-style: none;
+  overflow: scroll;
+  position: absolute;
+  top: 2rem;
+  left: 0rem;
+  width: 100%;
+  z-index: 2;
 }
 
 /* MODIFIERS ------------------------------------------ */
