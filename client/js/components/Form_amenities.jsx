@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 export default function Form_priceAmenities({
   handleChange,
   amenities: { amenity_isApartment,
+    amenity_isRoom,
     amenity_isCondo,
     amenity_isCoOp,
     amenity_hasElevator,
@@ -22,6 +23,13 @@ export default function Form_priceAmenities({
     <div className='form-amenities'>
       <div className='form-amenities__list'>
         Amenities:
+        <label className='form-amenities__list-item'>
+          <input type='checkbox'
+            name='amenity_isRoom'
+            value={amenity_isRoom}
+            onChange={handleChange} />
+          Room
+        </label>
         <label className='form-amenities__list-item'>
           <input type='checkbox'
             name='amenity_isApartment'

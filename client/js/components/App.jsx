@@ -27,8 +27,7 @@ export default class App extends Component {
       neighborhoodCodes,
       state
     );
-    console.log(`this-----> ${this}
-    result url -----> ${resultUrl}`)
+    console.log(`result url -----> ${resultUrl}`)
     this.setState({
       rentHop: resultUrl
     });

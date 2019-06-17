@@ -2,53 +2,66 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-export default function Form_prices({
+export default function Form_mainCriteria({
   handleChange,
   handleFocus,
+  handleKeyUp,
   amenities,
   amenities: {
     amenity_priceMax,
-    amenity_priceMin
+    amenity_priceMin,
+    amenity_noFee
   }
 }) {
 
-  
+
   return (
     <div className='form--main-criteria'>
 
       <div className="form--prices">
         Price Range:
-        <br />
-
-        <div>
-
-          <label id='price-min-container' className='position-rel'>
-            MIN
-            <input type='text'
-              value={amenity_priceMin}
-              name='amenity_priceMin'
-              onChange={handleChange}
-              onFocus={handleFocus}
-              //onBlur={handleFocus}
-            />
-          </label>
-
-
-        </div>
 
         <br />
 
-        <label id= 'price-max-container' className='position-rel'>
+        <label id='price-min-container'
+          name='amenity_priceMin'
+          className='position-rel'>
+          MIN
+          <input type='text'
+            value={amenity_priceMin}
+            name='amenity_priceMin'
+            onChange={handleChange}
+            onFocus={handleFocus}
+            onKeyUp={handleKeyUp}
+          />
+        </label>
+
+        <br />
+
+        <label id='price-max-container'
+          name='amenity_priceMax'
+          className='position-rel'>
           MAX
           <input type='text'
             value={amenity_priceMax}
             name='amenity_priceMax'
             onChange={handleChange}
             onFocus={handleFocus}
-            //onBlur={handleFocus}
+            onKeyUp={handleKeyUp}
           />
         </label>
 
+      </div>
+
+      <div className="form--no-fee">
+        <label>
+          <input type="checkbox"
+            value={amenity_noFee}
+            name={amenity_noFee}
+            onChange={handleChange}
+          />
+        </label>
+        No Fee
       </div>
 
       <div className="form__bed">
@@ -101,9 +114,10 @@ export default function Form_prices({
   );
 }
 
-Form_prices.propTypes = {
+Form_mainCriteria.propTypes = {
   handleChange: PropTypes.func.isRequired,
   handleFocus: PropTypes.func.isRequired,
+  handleKeyUp: PropTypes.func.isRequired,
   amenities: PropTypes.object.isRequired,
   amenity_priceMax: PropTypes.number.isRequired,
   amenity_priceMin: PropTypes.number.isRequired,

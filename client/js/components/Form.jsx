@@ -14,6 +14,7 @@ export default class Form extends Component {
     this.state = {
       amenity_priceMin: 250,
       amenity_priceMax: 50000,
+      amenity_noFee: false,
       amenity_numBedrooms1: false,
       amenity_numBedrooms2: false,
       amenity_numBedrooms3: false,
@@ -22,6 +23,7 @@ export default class Form extends Component {
       amenity_numBathrooms2: false,
       amenity_numBathrooms3: false,
       amenity_numBathrooms4: false,
+      amenity_isRoom: false,
       amenity_isApartment: false,
       amenity_isCondo: false,
       amenity_isCoOp: false,
@@ -201,14 +203,20 @@ export default class Form extends Component {
       'South Shore': false
 
     };
-    this.handleChange = this.handleChange.bind(this);
+
     this.handleBlur = this.handleBlur.bind(this);
-    this.handleFocus = this.handleFocus.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleChangeNeighborhood = this.handleChangeNeighborhood.bind(this);
     this.handleChangeSelect = this.handleChangeSelect.bind(this);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
     this.handleSelectAll = this.handleSelectAll.bind(this);
   }
 
+  handleBlur(event) {
+    const target = event.target;
+    target.parentNode.removeChild(target);
+  }
 
   handleChange(event) {
     const target = event.target;
@@ -241,10 +249,6 @@ export default class Form extends Component {
     target.previousSibling.value = value;
   }
 
-  handleBlur(event) {
-    const target = event.target;
-    target.parentNode.removeChild(target);
-  }
 
   handleFocus(event) {
     event.preventDefault();
@@ -254,9 +258,11 @@ export default class Form extends Component {
       const selectElement = document.createElement('select');
       const priceArray = [];
 
+      selectElement.id = 'form-price-select';
       selectElement.className = 'form--price-list';
       selectElement.size = 10;
       selectElement.onchange = this.handleChangeSelect;
+      selectElement.onkeyup = this.handleKeyUp;
       selectElement.onblur = this.handleBlur;
 
       for (let price = 250; price < 50000; price += 250) {
@@ -268,6 +274,7 @@ export default class Form extends Component {
         optionElement.key = price;
         optionElement.value = `${price}`;
         optionElement.innerText = `${price}`;
+        //optionElement.onkeyup = this.handleKeyUp;
         selectElement.append(optionElement);
       });
 
@@ -275,6 +282,21 @@ export default class Form extends Component {
     } else {
       const child = target.nextSibling;
       child.parentNode.removeChild(child);
+    }
+  }
+
+  handleKeyUp(event) {
+    event.preventDefault();
+    
+    if (event.keyCode === 13) {
+      const priceSelect = document.getElementById('form-price-select');
+      this.handleChange(event);
+      
+      if (priceSelect) { 
+        this.handleChangeSelect(event);
+        priceSelect.parentNode.removeChild(priceSelect); 
+      
+      }
     }
   }
 
@@ -314,6 +336,7 @@ export default class Form extends Component {
           <Form_mainCriteria
             handleChange={this.handleChange}
             handleFocus={this.handleFocus}
+            handleKeyUp={this.handleKeyUp}
             amenities={this.state}
           />
         </div>
