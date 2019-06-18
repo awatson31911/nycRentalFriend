@@ -57,7 +57,7 @@ export default function Form_mainCriteria({
         <label>
           <input type="checkbox"
             value={amenity_noFee}
-            name={amenity_noFee}
+            name='amenity_noFee'
             onChange={handleChange}
           />
         </label>
