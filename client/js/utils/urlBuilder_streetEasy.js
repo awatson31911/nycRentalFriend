@@ -7,69 +7,38 @@ function mapNeighborhoodCodes(selectedNeighborhoods, neighborhoodCodes) {
 
   const neighborhoods = Object.keys(selectedNeighborhoods)
     .filter(property => (selectedNeighborhoods[property] === true && !property.includes('amenity')));
-  let resultQueryStr = 'neighborhoods_str=';
-  let firstCode = true;
+  const neightborhoodArr = [];
+  let resultQueryStr = '%7Carea:';
 
   for (let i = 0; i < neighborhoods.length; i++) {
     const neighborhood = neighborhoods[i];
 
     // Logic for any 'allBorough' selections
     if (neighborhood === 'allBronx') {
-      if (i === 0) {
-        resultQueryStr += '4';
-        firstCode = false;
-      } else {
-        resultQueryStr += '%2C4';
-      }
+      neightborhoodArr.push('200');
       continue;
     } else if (neighborhood === 'allBrooklyn') {
-      if (i === 0) {
-        resultQueryStr += '2';
-        firstCode = false;
-      } else {
-        resultQueryStr += '%2C2';
-      }
+      neightborhoodArr.push('300');
       continue;
     } else if (neighborhood === 'allManhattan') {
-      if (i === 0) {
-        resultQueryStr += '1';
-        firstCode = false;
-      } else {
-        resultQueryStr += '%2C1';
-      }
+      neightborhoodArr.push('100');
       continue;
     } else if (neighborhood === 'allQueens') {
-      if (i === 0) {
-        resultQueryStr += '3';
-        firstCode = false;
-      } else {
-        resultQueryStr += '%2C3';
-      }
+      neightborhoodArr.push('400');
       continue;
     } else if (neighborhood === 'allStatenIsland') {
-      if (i === 0) {
-        resultQueryStr += '6';
-        firstCode = false;
-      } else {
-        resultQueryStr += '%2C6';
-      }
+      neightborhoodArr.push('500');
       continue;
     }
 
     // Logic for individual neighborhoods
-    if (i === 0 && firstCode) {
-      resultQueryStr += `${neighborhoodCodes[neighborhood]}`;
-      firstCode = false;
-    } else {
-      resultQueryStr += `%2C${neighborhoodCodes[neighborhood]}`;
-    }
-
+    neightborhoodArr.push(neighborhoodCodes[neighborhood]);
   }
 
-  return resultQueryStr.length <= 18 ? resultQueryStr = '' : resultQueryStr += '&';
+  return resultQueryStr += neightborhoodArr.join(',');
 }
 
-export default function buildURL_rentHop(neighborhoodCodes,
+export default function buildURL_streetEasy(neighborhoodCodes,
   {
     amenity_priceMin,
     amenity_priceMax,
@@ -85,16 +54,21 @@ export default function buildURL_rentHop(neighborhoodCodes,
     ...amenities
   }
 ) {
-  const baseUrl = 'https://www.renthop.com/search/nyc?';
-  const amenity_numBedrooms = Object.keys(amenities).filter((amenity) => amenity.includes('numBed'));
-  const amenity_numBathrooms = Object.keys(amenities).filter((amenity) => amenity.includes('numBath'));
-  const bedroomStr = amenity_numBedrooms.map((numString) => { //extrapalate into helper
-    if (amenities[numString]) {
-      return `bedrooms%5B%5D=${numString.slice(-1)}&`;
-    }
-    return '';
-  }).join('');
-  const bathroomStr = amenity_numBathrooms.map((numString) => { //extrapalate into helper
+  const baseUrl = 'https://streeteasy.com/for-rent/nyc/status:open';
+  const amenity_numBedroomsArr = Object.keys(amenities)
+    .filter((amenity) => amenity.includes('numBed'))
+    .map((numString) => numString.slice(-1)) // Grabs actual number of beds
+    .sort((a, b) => a > b); //Sorts num bedrooms asc
+  const bedroomStr = amenity_numBedroomsArr.length > 1
+    ? `%7Cbeds>=${amenity_numBedroomsArr[0]}`
+    : (
+      amenity_numBedroomsArr[0] === '0'
+        ? `%7Cbeds<1`
+        : `%7Cbeds=${amenity_numBedroomsArr[0]}`
+    );
+
+  const amenity_numBathroomsArr = Object.keys(amenities).filter((amenity) => amenity.includes('numBath'));
+  const bathroomStr = amenity_numBathroomsArr.map((numString) => {
     if (amenities[numString]) {
       return `bathrooms%5B%5D=${numString.slice(-1)}&`;
     }
@@ -102,5 +76,5 @@ export default function buildURL_rentHop(neighborhoodCodes,
   }).join('');
   const neighborhoodStr = mapNeighborhoodCodes(amenities, neighborhoodCodes);
 
-  return `${baseUrl}min_price=${amenity_priceMin}&max_price=${amenity_priceMax}&${amenity_noFee ? amenity_noFee : ''}${bedroomStr}${bathroomStr}${amenity_hasElevator ? 'features%5B%5D=Elevator&' : ''}${amenity_hasCats ? 'features%5B%5D=Cats+Allowed&' : ''}${amenity_hasDogs ? 'features%5B%5D=Dogs+Allowed&' : ''}${amenity_hasWasherDryerInUnit ? 'features%5B%5D=Laundry+In+Unit&' : ''}${amenity_hasWasherDryerInBuilding ? 'features%5B%5D=Laundry+In+Building&' : ''}${amenity_hasSharedOutdoorArea ? 'features%5B%5D=Common+Outdoor+Space&' : ''}${amenity_hasPrivateOutdoorArea ? 'features%5B%5D=Private+Outdoor+Space&' : ''}${amenity_hasFitnessGym ? 'features%5B%5D=Fitness+Center&' : ''}${neighborhoodStr}sort=hopscore&page=1&search=1`;
+  return `${baseUrl}%7Cprice=${amenity_priceMin}-${amenity_priceMax}${}${bedroomStr}${bathroomStr}${amenity_hasElevator ? '%7CElevator&' : ''}${amenity_hasCats ? '%7CCats+Allowed&' : ''}${amenity_hasDogs ? '%7CDogs+Allowed&' : ''}${amenity_hasWasherDryerInUnit ? '%7CLaundry+In+Unit&' : ''}${amenity_hasWasherDryerInBuilding ? '%7CLaundry+In+Building&' : ''}${amenity_hasSharedOutdoorArea ? '%7CCommon+Outdoor+Space&' : ''}${amenity_hasPrivateOutdoorArea ? '%7CPrivate+Outdoor+Space&' : ''}${amenity_hasFitnessGym ? '%7CFitness+Center&' : ''}${amenity_noFee ? '%7Cno_fee:1' : ''}sort_by=listed_desc`;
 }

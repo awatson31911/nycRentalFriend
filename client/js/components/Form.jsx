@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { rentHopCodes } from '../utils/neighborhoodCodes';
+import { rentHopCodes, streetEasyCodes } from '../utils/neighborhoodCodes';
 
 import GoogleMap from './GoogleMap';
 import Form_amenities from './Form_amenities';
@@ -15,6 +15,7 @@ export default class Form extends Component {
       amenity_priceMin: 250,
       amenity_priceMax: 50000,
       amenity_noFee: false,
+      amenity_numBedrooms0: false,
       amenity_numBedrooms1: false,
       amenity_numBedrooms2: false,
       amenity_numBedrooms3: false,

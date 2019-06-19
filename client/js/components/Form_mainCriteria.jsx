@@ -70,7 +70,9 @@ export default function Form_mainCriteria({
         {
           Object.keys(amenities).filter((amenity) => amenity.includes('numBed'))
             .map((numString) => {
-              const num = numString.slice(-1);
+              const num = Number(numString.slice(-1)) > 0
+                ? numString.slice(-1)
+                : 'Studio';
 
               return (
                 <label key={`form__bed${num}`}>
@@ -80,7 +82,7 @@ export default function Form_mainCriteria({
                     name={numString}
                     onChange={handleChange}
                   />
-                  {num.toString()}
+                  {num}
                 </label>
               );
             })
