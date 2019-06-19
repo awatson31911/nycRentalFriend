@@ -73,8 +73,10 @@ export default function buildURL_rentHop(neighborhoodCodes,
   {
     amenity_priceMin,
     amenity_priceMax,
+    amenity_noFee,
     amenity_hasDogs,
     amenity_hasCats,
+    amenity_hasElevator,
     amenity_hasWasherDryerInUnit,
     amenity_hasWasherDryerInBuilding,
     amenity_hasSharedOutdoorArea,
@@ -103,5 +105,5 @@ export default function buildURL_rentHop(neighborhoodCodes,
 
   const neighborhoodStr = mapNeighborhoodCodes(amenities, neighborhoodCodes);
 
-  return `${baseUrl}min_price=${amenity_priceMin}&max_price=${amenity_priceMax}&${bedroomStr}${bathroomStr}${amenity_hasCats ? 'features%5B%5D=Cats+Allowed&' : ''}${amenity_hasDogs ? 'features%5B%5D=Dogs+Allowed&' : ''}${amenity_hasWasherDryerInUnit ? 'features%5B%5D=Laundry+In+Unit&' : ''}${amenity_hasWasherDryerInBuilding ? 'features%5B%5D=Laundry+In+Building&' : ''}${amenity_hasSharedOutdoorArea ? 'features%5B%5D=Common+Outdoor+Space&' : ''}${amenity_hasPrivateOutdoorArea ? 'features%5B%5D=Private+Outdoor+Space&' : ''}${amenity_hasFitnessGym ? 'features%5B%5D=Fitness+Center&' : ''}${neighborhoodStr}sort=hopscore&page=1&search=1`;
+  return `${baseUrl}min_price=${amenity_priceMin}&max_price=${amenity_priceMax}&${amenity_noFee ? 'no_fee=on&' : ''}${bedroomStr}${bathroomStr}${amenity_hasElevator ? 'features%5B%5D=Elevator&' : ''}${amenity_hasCats ? 'features%5B%5D=Cats+Allowed&' : ''}${amenity_hasDogs ? 'features%5B%5D=Dogs+Allowed&' : ''}${amenity_hasWasherDryerInUnit ? 'features%5B%5D=Laundry+In+Unit&' : ''}${amenity_hasWasherDryerInBuilding ? 'features%5B%5D=Laundry+In+Building&' : ''}${amenity_hasSharedOutdoorArea ? 'features%5B%5D=Common+Outdoor+Space&' : ''}${amenity_hasPrivateOutdoorArea ? 'features%5B%5D=Private+Outdoor+Space&' : ''}${amenity_hasFitnessGym ? 'features%5B%5D=Fitness+Center&' : ''}${neighborhoodStr}sort=hopscore&page=1&search=1`;
 }
