@@ -8,7 +8,6 @@ function mapNeighborhoodCodes(selectedNeighborhoods, neighborhoodCodes) {
   const neighborhoods = Object.keys(selectedNeighborhoods)
     .filter(property => (selectedNeighborhoods[property] === true && !property.includes('amenity')));
   const neightborhoodArr = [];
-  let resultQueryStr = '%7Carea:';
 
   for (let i = 0; i < neighborhoods.length; i++) {
     const neighborhood = neighborhoods[i];
@@ -35,7 +34,7 @@ function mapNeighborhoodCodes(selectedNeighborhoods, neighborhoodCodes) {
     neightborhoodArr.push(neighborhoodCodes[neighborhood]);
   }
 
-  return resultQueryStr += neightborhoodArr.join(',');
+  return neightborhoodArr.join(',').length ? '%7Carea:' + neightborhoodArr.join(',') : '';
 }
 
 export default function buildURL_streetEasy(neighborhoodCodes,
@@ -45,6 +44,7 @@ export default function buildURL_streetEasy(neighborhoodCodes,
     amenity_noFee,
     amenity_hasDogs,
     amenity_hasCats,
+    amenity_hasDishwasher,
     amenity_hasWasherDryerInUnit,
     amenity_hasWasherDryerInBuilding,
     amenity_hasSharedOutdoorArea,
@@ -55,26 +55,46 @@ export default function buildURL_streetEasy(neighborhoodCodes,
   }
 ) {
   const baseUrl = 'https://streeteasy.com/for-rent/nyc/status:open';
-  const amenity_numBedroomsArr = Object.keys(amenities)
-    .filter((amenity) => amenity.includes('numBed'))
+  let bedroomStr;
+  let bathroomStr;
+  const numBedroomsArr = Object.keys(amenities)
+    .filter((amenity) => amenity.includes('numBed') && amenities[amenity] === true)
     .map((numString) => numString.slice(-1)) // Grabs actual number of beds
     .sort((a, b) => a > b); //Sorts num bedrooms asc
-  const bedroomStr = amenity_numBedroomsArr.length > 1
-    ? `%7Cbeds>=${amenity_numBedroomsArr[0]}`
-    : (
-      amenity_numBedroomsArr[0] === '0'
-        ? `%7Cbeds<1`
-        : `%7Cbeds=${amenity_numBedroomsArr[0]}`
-    );
-
-  const amenity_numBathroomsArr = Object.keys(amenities).filter((amenity) => amenity.includes('numBath'));
-  const bathroomStr = amenity_numBathroomsArr.map((numString) => {
-    if (amenities[numString]) {
-      return `bathrooms%5B%5D=${numString.slice(-1)}&`;
-    }
-    return '';
-  }).join('');
+  const numBathroomsArr = Object.keys(amenities)
+    .filter((amenity) => amenity.includes('numBath') && amenities[amenity] === true)
+    .map((numString) => numString.slice(-1)) // Grabs actual number of bathrooms
+    .sort((a, b) => a > b); //Sorts num bathrooms asc
   const neighborhoodStr = mapNeighborhoodCodes(amenities, neighborhoodCodes);
+  const hasAmenities = amenity_hasDishwasher ||
+    amenity_hasWasherDryerInUnit ||
+    amenity_hasWasherDryerInBuilding ||
+    amenity_hasSharedOutdoorArea ||
+    amenity_hasPrivateOutdoorArea ||
+    amenity_hasFitnessGym ||
+    amenity_hasElevator;
 
-  return `${baseUrl}%7Cprice=${amenity_priceMin}-${amenity_priceMax}${}${bedroomStr}${bathroomStr}${amenity_hasElevator ? '%7CElevator&' : ''}${amenity_hasCats ? '%7CCats+Allowed&' : ''}${amenity_hasDogs ? '%7CDogs+Allowed&' : ''}${amenity_hasWasherDryerInUnit ? '%7CLaundry+In+Unit&' : ''}${amenity_hasWasherDryerInBuilding ? '%7CLaundry+In+Building&' : ''}${amenity_hasSharedOutdoorArea ? '%7CCommon+Outdoor+Space&' : ''}${amenity_hasPrivateOutdoorArea ? '%7CPrivate+Outdoor+Space&' : ''}${amenity_hasFitnessGym ? '%7CFitness+Center&' : ''}${amenity_noFee ? '%7Cno_fee:1' : ''}sort_by=listed_desc`;
+  if (numBedroomsArr.length > 1) {
+    bedroomStr = `%7Cbeds>=${numBedroomsArr[0]}`
+  } else if (numBedroomsArr.length === 1) {
+    numBedroomsArr[0] === '0'
+      ? '%7Cbeds<1'
+      : `%7Cbeds=${numBedroomsArr[0]}`
+  } else {
+    bedroomStr = '';
+  }
+
+  if (numBathroomsArr.length > 1) {
+    bathroomStr = `%7Cbaths>=${numBathroomsArr[0]}`
+  } else if (numBathroomsArr.length === 1) {
+    numBathroomsArr[0] === '0'
+      ? '%7Cbaths<1'
+      : `%7Cbaths=${numBathroomsArr[0]}`
+  } else {
+    bathroomStr = '';
+  }
+
+  return `${baseUrl}%7Cprice=${amenity_priceMin}-${amenity_priceMax}${neighborhoodStr}${bedroomStr}${bathroomStr}${hasAmenities
+    ? (`%7Camenities:${amenity_hasDishwasher ? 'dishwasher,' : ''}${amenity_hasElevator ? 'elevator,' : ''}${amenity_hasSharedOutdoorArea || amenity_hasPrivateOutdoorArea ? 'outdoor_space,' : ''}${amenity_hasWasherDryerInUnit ? 'washer_dryer,' : ''}${amenity_hasWasherDryerInBuilding ? 'laundry,' : ''}${amenity_hasFitnessGym ? 'gym,' : ''}${amenity_hasCats || amenity_hasDogs ? 'pets' : ''} `)
+    : ''}${amenity_noFee ? '%7Cno_fee:1' : ''}?sort_by=listed_desc`;
 }

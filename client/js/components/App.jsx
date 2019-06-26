@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import urlBuilder_rentHop from '../utils/urlBuilder_rentHop';
+import urlBuilder_streetEasy from '../utils/urlBuilder_streetEasy';
 
 import Form from './Form';
 import Header from './Header';
@@ -19,17 +20,32 @@ export default class App extends Component {
   }
 
   handleSubmit(event,
-    neighborhoodCodes,
+    rentHopCodes,
+    streetEasyCodes,
     state) {
 
     event.preventDefault();
-    const resultUrl = urlBuilder_rentHop(
-      neighborhoodCodes,
+    const rentHopUrl = urlBuilder_rentHop(
+      rentHopCodes,
       state
     );
-    console.log(`result url -----> ${resultUrl}`)
+    const streetEasyUrl = urlBuilder_streetEasy(
+      streetEasyCodes,
+      state
+    );
+
+    // const zumperUrl = urlBuilder_rentHop(
+    //   zumperCodes,
+    //   state
+    // );
+
+    console.log(`rentHop url -----> ${rentHopUrl}
+    streetEasy url -----> ${streetEasyUrl}`)
+
     this.setState({
-      rentHop: resultUrl
+      rentHop: rentHopUrl,
+      streetEasy: streetEasyUrl,
+      //zumper: zumperUrl
     });
   }
 

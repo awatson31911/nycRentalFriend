@@ -86,8 +86,8 @@ export default function buildURL_rentHop(neighborhoodCodes,
   }
 ) {
   const baseUrl = 'https://www.renthop.com/search/nyc?';
-  const amenity_numBedrooms = Object.keys(amenities).filter((amenity) => amenity.includes('numBed'));
-  const amenity_numBathrooms = Object.keys(amenities).filter((amenity) => amenity.includes('numBath'));
+  const amenity_numBedrooms = Object.keys(amenities).filter((amenity) => amenity.includes('numBed') && amenities[amenity] === true);
+  const amenity_numBathrooms = Object.keys(amenities).filter((amenity) => amenity.includes('numBath') && amenities[amenity] === true);
 
   const bedroomStr = amenity_numBedrooms.map((numString) => { //extrapalate into helper
     if (amenities[numString]) {

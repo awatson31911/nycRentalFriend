@@ -288,15 +288,15 @@ export default class Form extends Component {
 
   handleKeyUp(event) {
     event.preventDefault();
-    
+
     if (event.keyCode === 13) {
       const priceSelect = document.getElementById('form-price-select');
       this.handleChange(event);
-      
-      if (priceSelect) { 
+
+      if (priceSelect) {
         this.handleChangeSelect(event);
-        priceSelect.parentNode.removeChild(priceSelect); 
-      
+        priceSelect.parentNode.removeChild(priceSelect);
+
       }
     }
   }
@@ -323,6 +323,7 @@ export default class Form extends Component {
         this.props.handleSubmit(
           event,
           rentHopCodes,
+          streetEasyCodes,
           this.state
         );
       }
