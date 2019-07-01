@@ -18,33 +18,36 @@ function mapNeighborhoodCodes(selectedNeighborhoods, neighborhoodCodes) {
   const neighborhoods = Object.keys(selectedNeighborhoods)
     .filter(property => (selectedNeighborhoods[property] === true && !property.includes('amenity')));
   const neightborhoodArr = [];
+  let neighborhoodStr = '';
+  let mapBox = '';
 
   for (let i = 0; i < neighborhoods.length; i++) {
     const neighborhood = neighborhoods[i];
 
     // Logic for any 'allBorough' selections
-    if (neighborhood === 'allBronx') {
-      neightborhoodArr.push('200');
+    if (neighborhood === 'allBronx' && !mapBox.length) {
+      mapBox += 'box=-73.93269929931533,40.801361187307215,-73.78575716064348,40.89200022201752&';
       continue;
-    } else if (neighborhood === 'allBrooklyn') {
-      neightborhoodArr.push('300');
+    } else if (neighborhood === 'allBrooklyn' && !mapBox.length) {
+      mapBox += 'box=-74.02158165493081,40.62324107342568,-73.87463951625894,40.714123128525735&';
       continue;
-    } else if (neighborhood === 'allManhattan') {
-      neightborhoodArr.push('100');
+    } else if (neighborhood === 'allManhattan' && !mapBox.length) {
+      mapBox += 'box=-74.0291960397817,40.7343983498845,-73.88225390110982,40.825128848846845&';
       continue;
-    } else if (neighborhood === 'allQueens') {
-      neightborhoodArr.push('400');
+    } else if (neighborhood === 'allQueens' && !mapBox.length) {
+      mapBox += 'box=-73.95915819798482,40.64588845703862,-73.67008043919576,40.827466964550624&';
       continue;
-    } else if (neighborhood === 'allStatenIsland') {
-      neightborhoodArr.push('500');
+    } else if (neighborhood === 'allStatenIsland' && !mapBox.length) {
+      mapBox += 'box=-74.2665070614328,40.47957508711025,-73.97262278408907,40.66160615364085&';
       continue;
     }
 
-    // Logic for individual neighborhoods
     neightborhoodArr.push(neighborhoodCodes[neighborhood]);
   }
 
-  return neightborhoodArr.join(',').length ? '%7Carea:' + neightborhoodArr.join(',') : '';
+  neighborhoodStr = neightborhoodArr.join(',').length ? 'neighborhood-ids=' + neightborhoodArr.join(',') : '';
+
+  return mapBox + neighborhoodStr;
 }
 
 export default function buildURL_streetEasy(neighborhoodCodes,
@@ -55,7 +58,6 @@ export default function buildURL_streetEasy(neighborhoodCodes,
     amenity_isRoom,
     amenity_isApartment,
     amenity_isCondo,
-    amenity_isCoOp,
     amenity_hasDogs,
     amenity_hasCats,
     amenity_hasDishwasher,
@@ -73,44 +75,53 @@ export default function buildURL_streetEasy(neighborhoodCodes,
 
   /* ------------- Bedroom logic ---------------- */
 
-  const bedroomStr = Object.keys(amenities)
+  let bedroomStr = Object.keys(amenities)
     .filter((amenity) => amenity.includes('numBed') && amenities[amenity] === true)
     .map((numString) => numString.slice(-1)) // Grabs actual number of beds
     .sort((a, b) => a > b) //Sorts num bedrooms asc
     .join(',');
 
-  /* --------------- Types of Property Logic --------------- */
-
-  const typesOfProps = [amenity_isRoom, amenity_isApartment, amenity_isCondo, amenity_isCoOp];
-  for (let i = 0; i < typesOfProps.length; i++) {
-    const propertyType = typesOfProps[i];
-    if (!propertyType) { typesOfProps.slice(i); }
-    else { typesOfProps[i] = propertyType.slice(9).toLowerCase(); }
+  if (bedroomStr.length) {
+    bedroomStr += '-beds/';
   }
 
-  if (typesOfProps.length) { `property-categories=${typesOfProps.join('%2C') + '&'}`; }
+  /* ------------- Pet logic ---------------- */
+  let petStr = '';
+
+  if (amenity_hasCats && amenity_hasDogs) { petStr += 'pet-friendly'; }
+  else if (amenity_hasCats) { petStr += 'cat-friendly'; }
+  else if (amenity_hasDogs) { petStr += 'dog-friendly'; }
+
+  /* --------------- Types of Property Logic --------------- */
+
+  let typesOfProps = [];
+
+  if (amenity_isRoom) { typesOfProps.push('room'); }
+  if (amenity_isApartment) { typesOfProps.push('apartment'); }
+  if (amenity_isCondo) { typesOfProps.push('condo'); }
+
+  if (typesOfProps.length) { typesOfProps = `property-categories=${typesOfProps.join('%2C') + '&'}`; }
+  else { typesOfProps = ''; }
 
   /* --------------- Listing Amenities Logic --------------- */
 
-  const listingAmenities = [amenity_hasPrivateOutdoorArea, amenity_hasWasherDryerInUnit, amenity_hasDishwasher];
-  for (let i = 0; i < listingAmenities.length; i++) {
-    const listingAm = listingAmenities[i];
-    if (!listingAm) { listingAmenities.slice(i); }
-    else { listingAmenities[i] = amenityCodes[listingAm]; }
-  }
+  let listingAmenities = [];
+  if (amenity_hasPrivateOutdoorArea) { listingAmenities.push(amenityCodes.amenity_hasPrivateOutdoorArea); }
+  if (amenity_hasWasherDryerInUnit) { listingAmenities.push(amenityCodes.amenity_hasWasherDryerInUnit); }
+  if (amenity_hasDishwasher) { listingAmenities.push(amenityCodes.amenity_hasDishwasher); }
 
-  if (listingAmenities.length) { `listing-amenities=${listingAmenities.join('%2C') + '&'}`; }
-
+  if (listingAmenities.length) { listingAmenities = `listing-amenities=${listingAmenities.join('%2C') + '&'}`; }
+  else { listingAmenities = ''; }
   /* --------------- Building Amenities Logic --------------- */
 
-  const buildingAmenities = [amenity_hasWasherDryerInBuilding, amenity_hasSharedOutdoorArea, amenity_hasFitnessGym, amenity_hasElevator,];
-  for (let i = 0; i < buildingAmenities.length; i++) {
-    const buildingAm = buildingAmenities[i];
-    if (!buildingAm) { buildingAmenities.slice(i); }
-    else { buildingAmenities[i] = amenityCodes[buildingAm]; }
-  }
+  let buildingAmenities = [];
+  if (amenity_hasWasherDryerInBuilding) { buildingAmenities.push(amenityCodes.amenity_hasWasherDryerInBuilding); }
+  if (amenity_hasSharedOutdoorArea) { buildingAmenities.push(amenityCodes.amenity_hasSharedOutdoorArea); }
+  if (amenity_hasFitnessGym) { buildingAmenities.push(amenityCodes.amenity_hasFitnessGym); }
+  if (amenity_hasElevator) { buildingAmenities.push(amenityCodes.amenity_hasElevator); }
 
-  if (buildingAmenities.length) { `building-amenities=${buildingAmenities.join('%2C') + '&'}`; }
+  if (buildingAmenities.length) { buildingAmenities = `building-amenities=${buildingAmenities.join('%2C') + '&'}`; }
+  else { buildingAmenities = ''; }
 
   /* --------------- Neighborhood Logic --------------- */
 
@@ -121,27 +132,14 @@ export default function buildURL_streetEasy(neighborhoodCodes,
   let bathroomStr = Object.keys(amenities)
     .filter((amenity) => amenity.includes('numBath') && amenities[amenity] === true)
     .map((numString) => numString.slice(-1)) // Grabs actual number of beds
-    .sort((a, b) => a > b)[0]; //Sorts num bedrooms asc
+    .sort((a, b) => a > b); //Sorts num bedrooms asc
 
-  if (bathroomStr) { bathroomStr = `bathrooms=${bathroomStr}`; }
+  if (bathroomStr.length) { bathroomStr = `bathrooms=${bathroomStr[0]}&`; }
+  else { bathroomStr = ''; }
 
   /* --------------- Result URL --------------- */
 
-  return `${baseUrl}
-  ${amenity_noFee ? 'no-fee/' : ''}
-  price-${amenity_priceMin},${amenity_priceMax}/
-  ${bedroomStr.length ? bedroomStr + '-beds/' : bedroomStr}
-  ${amenity_hasCats || amenity_hasDogs ? 'pets' : ''} 
-  ${buildingAmenities || listingAmenities || bathroomStr || typesOfProps
+  return `${baseUrl}${amenity_noFee ? 'no-fee/' : ''}price-${amenity_priceMin},${amenity_priceMax}/${bedroomStr}${petStr}${buildingAmenities || listingAmenities || bathroomStr || typesOfProps
     ? '?'
-    : ''}${typesOfProps}${bathroomStr}${listingAmenities}${buildingAmenities}
-  box=-74,40.7,-73.7,40.9&
-  ${neighborhoodStr}
-`;
+    : ''}${typesOfProps}${bathroomStr}${listingAmenities}${buildingAmenities}${neighborhoodStr}`;
 }
-
-
-/*
-If prop categories OR building amenities OR listing amenities OR bathrooms
-add query string for and ternary all three of them: if variable then add else empty string
-*/

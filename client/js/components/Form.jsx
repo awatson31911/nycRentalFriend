@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { rentHopCodes, streetEasyCodes } from '../utils/neighborhoodCodes';
+import { rentHopCodes, streetEasyCodes, zumperCodes } from '../utils/neighborhoodCodes';
 
 import GoogleMap from './GoogleMap';
 import Form_amenities from './Form_amenities';
@@ -202,7 +202,6 @@ export default class Form extends Component {
       'Mid-Island': false,
       'North Shore': false,
       'South Shore': false
-
     };
 
     this.handleBlur = this.handleBlur.bind(this);
@@ -324,6 +323,7 @@ export default class Form extends Component {
           event,
           rentHopCodes,
           streetEasyCodes,
+          zumperCodes,
           this.state
         );
       }
