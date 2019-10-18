@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 import { rentHopCodes, streetEasyCodes, zumperCodes } from '../utils/neighborhoodCodes';
 
-import GoogleMap from './GoogleMap';
+import MapContainer from './MapContainer';
+import Map from './Map';
 import Form_amenities from './Form_amenities';
 import Form_mainCriteria from './Form_mainCriteria';
 import Form_neighborhoods from './Form_neighborhoods';
@@ -72,7 +73,7 @@ export default class Form extends Component {
       'Greenpoint': false,
       'Greenwood Heights': false,
       'Kensington': false,
-      'Mapleton': false,
+      'MapContainerleton': false,
       'Marine Park': false,
       'Midwood': false,
       'Mill Basin': false,
@@ -306,7 +307,7 @@ export default class Form extends Component {
       .getElementsByTagName('label');
 
 
-    Array.from(neighborhoodNodes).map((neighborhoodNode) => {
+    Array.from(neighborhoodNodes).mapContainer((neighborhoodNode) => {
       const neighborhood = neighborhoodNode.textContent;
       //neighborhoodNode.checked = selectAll;
       this.setState({
@@ -344,7 +345,9 @@ export default class Form extends Component {
         </div>
 
         <div className='form-container__row form-container__row--2'>
-          <GoogleMap />
+          <MapContainer>
+            <Map/>
+          </MapContainer>
           <Form_amenities
             handleChange={this.handleChange}
             amenities={this.state}
