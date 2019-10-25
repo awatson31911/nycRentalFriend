@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { rentHopCodes, streetEasyCodes, zumperCodes } from '../utils/neighborhoodCodes';
 
-import MapContainer from './MapContainer';
+// import MapContainer from './MapContainer';
 import Map from './Map';
 import Form_amenities from './Form_amenities';
 import Form_mainCriteria from './Form_mainCriteria';
@@ -345,9 +345,8 @@ export default class Form extends Component {
         </div>
 
         <div className='form-container__row form-container__row--2'>
-          <MapContainer>
-            <Map/>
-          </MapContainer>
+          <Map />
+
           <Form_amenities
             handleChange={this.handleChange}
             amenities={this.state}
