@@ -59,7 +59,7 @@ export const allNeighborhoods = {
     'Norwood': '260',
     'Parkchester': '231',
     'Pelham Bay': '233',
-    'Pelham Parkway': '238',
+    'Pelham Parkway': '238', //Combine Allerton, pelham parkway and bronxdale
     'Riverdale': '225',
     'Soundview/Clason Point': '228',
     'Throgs Neck': '232',
